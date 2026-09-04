@@ -1407,8 +1407,7 @@ function App() {
                         <Mail className="info-item-icon" size={20} />
                         <div className="info-item-text">
                           <strong>Email Enquiries</strong>
-                          <a href="mailto:info@grafikmachinery.com">info@grafikmachinery.com</a>
-                          <span style={{ display: 'block', fontSize: '0.85rem' }}><a href="mailto:grafikmachinery@gmail.com">grafikmachinery@gmail.com</a></span>
+                          <a href="mailto:grafikmachinery@gmail.com">grafikmachinery@gmail.com</a>
                         </div>
                       </li>
                       <li className="info-item">
@@ -1478,7 +1477,7 @@ function App() {
               </li>
               <li>
                 <Mail size={16} />
-                <span>info@grafikmachinery.com</span>
+                <a href="mailto:grafikmachinery@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>grafikmachinery@gmail.com</a>
               </li>
             </ul>
           </div>
