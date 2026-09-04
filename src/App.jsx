@@ -695,7 +695,7 @@ function App() {
                 <div className="hero-overlay-content">
                   <div className="hero-text-panel">
                     <h1 className="hero-headline">
-                      Precision UV curing, folder-gluing and coating solutions engineered for global print and packaging applications.
+                      Coating and Curing Systems for printing, finishing and converting applications
                     </h1>
 
                     <div className="hero-buttons">
