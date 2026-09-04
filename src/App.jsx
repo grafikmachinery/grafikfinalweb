@@ -28,7 +28,8 @@ import {
   Ruler,
   Zap,
   Gauge,
-  Camera
+  Camera,
+  ArrowDown
 } from 'lucide-react';
 
 // Custom Social SVG Icon Components (Lucide brand icons fallback)
@@ -169,6 +170,15 @@ function StatCounter({ target, suffix = '', label }) {
     </div>
   );
 }
+
+// Real Machinery Hero Slideshow Images
+const HERO_SLIDES = [
+  { src: '/hero_slides/hero_slide_1.png', alt: 'Precision Printing Press and Coating Machine' },
+  { src: '/hero_slides/hero_slide_2.jpg', alt: 'High-Performance UV Curing Lamps in Operation' },
+  { src: '/hero_slides/hero_slide_3.png', alt: 'Modular Multi-Lamp UV Curing Cassette Unit' },
+  { src: '/hero_slides/hero_slide_4.jpg', alt: 'High-Efficiency LED UV Printing Dryer System' },
+  { src: '/hero_slides/hero_slide_5.png', alt: 'Multi-Color Offset Printing Press and Roller Mechanism' }
+];
 
 // Product Catalog
 const PRODUCTS = [
@@ -343,6 +353,15 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [quoteSubject, setQuoteSubject] = useState('');
   const [scrolled, setScrolled] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto-rotating Hero Slideshow (5.5s per image)
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % HERO_SLIDES.length);
+    }, 5500);
+    return () => clearInterval(slideInterval);
+  }, []);
   
   // Contact Form State
   const [formData, setFormData] = useState({
@@ -648,32 +667,65 @@ function App() {
               </a>
             </div>
 
-            {/* Hero Banner Section */}
+            {/* Full-Bleed Auto-Rotating Slideshow Hero Section */}
             <section className="hero-section">
-              <div className="container hero-grid">
-                <div>
-                  <span className="hero-eyebrow animate-fade-in" style={{ color: 'rgba(255, 255, 255, 0.65)', fontWeight: '600', letterSpacing: '0.15em', textTransform: 'uppercase', fontSize: '0.8rem', display: 'block', marginBottom: '16px' }}>
-                    Grafik Machinery International
-                  </span>
-                  <h1 className="hero-title">Engineering Premium Machinery Since 1989</h1>
-                  <p className="hero-subtitle">
-                    Technical wizardry in the printing and packaging industry. Engineering premium, durable machinery for global print markets.
-                  </p>
-                  <div className="hero-buttons">
-                    <a href="#contact" className="btn btn-primary">
-                      Contact Us <ArrowRight size={18} />
-                    </a>
-                    <a href="#products" className="btn btn-outline-white">
-                      Our Products
+              {/* Full-bleed automatic photo slideshow background */}
+              <div className="hero-slideshow">
+                {HERO_SLIDES.map((slide, idx) => (
+                  <div 
+                    key={slide.src} 
+                    className={`hero-slide ${idx === currentSlide ? 'active' : ''}`}
+                    style={{
+                      opacity: idx === currentSlide ? 1 : 0,
+                      zIndex: idx === currentSlide ? 1 : 0,
+                    }}
+                  >
+                    <img 
+                      src={slide.src} 
+                      alt={slide.alt} 
+                      className="hero-slide-img"
+                      loading={idx === 0 ? 'eager' : 'lazy'}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Gradient Scrim Overlay for Contrast & Legibility */}
+              <div className="hero-scrim-overlay" />
+
+              {/* Right-Aligned Content */}
+              <div className="container hero-container-rel">
+                <div className="hero-overlay-content">
+                  <div className="hero-text-panel">
+                    <h1 className="hero-headline-right">
+                      Precision UV curing, folder-gluing and coating solutions engineered for global print and packaging applications.
+                    </h1>
+
+                    <div className="hero-buttons-right">
+                      <a href="#contact" className="btn btn-primary">
+                        Contact Us <ArrowRight size={18} />
+                      </a>
+                      <a href="#products" className="btn btn-outline-white">
+                        Our Products
+                      </a>
+                    </div>
+
+                    <a 
+                      href="#about" 
+                      className="hero-scroll-indicator" 
+                      aria-label="Scroll Down"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const target = document.querySelector('.stat-strip') || document.querySelector('#about');
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      <span className="scroll-indicator-text">Scroll Down</span>
+                      <div className="scroll-indicator-circle">
+                        <ArrowDown size={18} />
+                      </div>
                     </a>
                   </div>
-                </div>
-                <div className="hero-image-wrapper">
-                  <img 
-                    src="/hero_main.jpg" 
-                    alt="Grafik Machinery Premium folder and gluer machine" 
-                    className="hero-image hero-zoom-anim"
-                  />
                 </div>
               </div>
             </section>
