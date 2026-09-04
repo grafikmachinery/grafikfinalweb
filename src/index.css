@@ -1337,14 +1337,33 @@ textarea.form-control {
 .footer-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 16px;
+}
+
+.footer-logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.45));
 }
 
 .footer-logo-text {
   font-weight: 800;
   font-size: 1.3rem;
   color: var(--neutral-white);
+  line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+  .footer-logo-img {
+    height: 38px;
+  }
+  .footer-logo-text {
+    font-size: 1.05rem;
+  }
 }
 
 .footer-about-text {

@@ -1444,9 +1444,9 @@ function App() {
       <footer className="footer">
         <div className="container footer-grid">
           <div className="footer-about">
-            <div className="footer-logo" style={{ display: 'flex', alignItems: 'center' }}>
-              <img src="/logo.png" alt="Grafik Machinery Logo" style={{ height: '48px', width: 'auto', filter: 'brightness(0) invert(1)', objectFit: 'contain' }} />
-              <span className="footer-logo-text" style={{ marginLeft: '12px' }}>GRAFIK MACHINERY INTERNATIONAL</span>
+            <div className="footer-logo">
+              <img src="/grafik_logo_transparent.png" alt="Grafik Machinery Logo" className="footer-logo-img" />
+              <span className="footer-logo-text">GRAFIK MACHINERY INTERNATIONAL</span>
             </div>
             <p className="footer-about-text">
               Engineering high-performance industrial UV curing setups, offset coating additions, and carton paste solutions since 1989.
