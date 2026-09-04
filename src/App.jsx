@@ -494,7 +494,7 @@ function App() {
       <header className={`navbar-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-container">
           <a href="#home" className="nav-logo-link" onClick={() => navigateTo('home')}>
-            <img src="/grafik_full_logo.jpg" alt="Grafik Machinery Logo" className="nav-logo-img" />
+            <img src="/grafik_logo_transparent.png" alt="Grafik Machinery Logo" className="nav-logo-img" />
             <span className="logo-text">GRAFIK MACHINERY INTERNATIONAL</span>
           </a>
 
