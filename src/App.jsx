@@ -682,9 +682,9 @@ function App() {
             <section className="stat-strip">
               <div className="container stat-grid">
                 <StatCounter target="1989" label="Founded" />
-                <StatCounter target="35" suffix="+" label="Years B2B Experience" />
+                <StatCounter target="35" suffix="+" label="Years Experience" />
                 <StatCounter target="25" suffix="%" label="Exported Worldwide" />
-                <StatCounter target="MENA & Asia" label="Primary Export Markets" />
+                <StatCounter target="40" suffix="%" label="Customer Repeat Rate" />
               </div>
             </section>
 
