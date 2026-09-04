@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.grafikmachinery.in/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/product_uv_curing.jpg</image:loc>
+      <image:title>U.V. Curing Systems</image:title>
+      <image:caption>Grafik Tech high-performance ultraviolet curing systems for printing and packaging</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/product_led_uv.jpg</image:loc>
+      <image:title>LED UV Systems</image:title>
+      <image:caption>Energy-efficient LED UV curing solutions with 20,000+ operating hours</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/product_carton_gluer.jpg</image:loc>
+      <image:title>Carton Folding and Gluing Machine</image:title>
+      <image:caption>High-speed carton pasting and folding machine with lock bottom attachments</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/carton_gluer.jpg</image:loc>
+      <image:title>Window Patching and Liner Carton Machine</image:title>
+      <image:caption>High-precision window film patching for food, toy, and cosmetic boxes</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/product_folder_gluer.jpg</image:loc>
+      <image:title>Automatic Folder Gluer</image:title>
+      <image:caption>Precision industrial carton folding and gluing equipment</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/about_exhibition.jpg</image:loc>
+      <image:title>Grafik Machinery International Exhibition</image:title>
+      <image:caption>Grafik Machinery International showcase and industrial machinery booth</image:caption>
+    </image:image>
+  </url>
+</urlset>
