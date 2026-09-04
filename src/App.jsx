@@ -699,11 +699,8 @@ function App() {
                     </h1>
 
                     <div className="hero-buttons">
-                      <a href="#contact" className="btn btn-primary">
-                        Contact Us <ArrowRight size={18} />
-                      </a>
-                      <a href="#products" className="btn btn-outline-white">
-                        Our Products
+                      <a href="#products" className="btn btn-primary">
+                        Our Products <ArrowRight size={18} />
                       </a>
                     </div>
                   </div>
