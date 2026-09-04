@@ -690,9 +690,6 @@ function App() {
                 ))}
               </div>
 
-              {/* Gradient Scrim Overlay for Contrast & Legibility */}
-              <div className="hero-scrim-overlay" />
-
               {/* Left-Aligned Overlay Content */}
               <div className="container hero-container-rel">
                 <div className="hero-overlay-content">
