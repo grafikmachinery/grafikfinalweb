@@ -244,9 +244,17 @@ p {
 .nav-logo-link {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
   text-decoration: none;
   color: var(--primary-navy);
+}
+
+.nav-logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
 }
 
 .logo-icon-box {
@@ -264,14 +272,57 @@ p {
 
 .logo-text {
   font-weight: 800;
-  font-size: 1.3rem;
-  letter-spacing: -0.02em;
+  font-size: 1.42rem;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
   white-space: nowrap;
+}
+
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .logo-text {
+    font-size: 1.25rem;
+  }
+  .nav-logo-img {
+    height: 34px;
+  }
+  .nav-logo-link {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .logo-text {
+    font-size: 1.2rem;
+  }
+  .nav-logo-img {
+    height: 34px;
+  }
+  .nav-logo-link {
+    gap: 16px;
+  }
 }
 
 @media (max-width: 768px) {
   .logo-text {
-    font-size: 0.95rem;
+    font-size: 1.02rem;
+  }
+  .nav-logo-img {
+    height: 28px;
+  }
+  .nav-logo-link {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 0.88rem;
+  }
+  .nav-logo-img {
+    height: 25px;
+  }
+  .nav-logo-link {
+    gap: 10px;
   }
 }
 
