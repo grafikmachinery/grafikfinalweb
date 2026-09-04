@@ -693,15 +693,15 @@ function App() {
               {/* Gradient Scrim Overlay for Contrast & Legibility */}
               <div className="hero-scrim-overlay" />
 
-              {/* Right-Aligned Content */}
+              {/* Left-Aligned Overlay Content */}
               <div className="container hero-container-rel">
                 <div className="hero-overlay-content">
                   <div className="hero-text-panel">
-                    <h1 className="hero-headline-right">
+                    <h1 className="hero-headline">
                       Precision UV curing, folder-gluing and coating solutions engineered for global print and packaging applications.
                     </h1>
 
-                    <div className="hero-buttons-right">
+                    <div className="hero-buttons">
                       <a href="#contact" className="btn btn-primary">
                         Contact Us <ArrowRight size={18} />
                       </a>
@@ -709,22 +709,6 @@ function App() {
                         Our Products
                       </a>
                     </div>
-
-                    <a 
-                      href="#about" 
-                      className="hero-scroll-indicator" 
-                      aria-label="Scroll Down"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const target = document.querySelector('.stat-strip') || document.querySelector('#about');
-                        if (target) target.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                    >
-                      <span className="scroll-indicator-text">Scroll Down</span>
-                      <div className="scroll-indicator-circle">
-                        <ArrowDown size={18} />
-                      </div>
-                    </a>
                   </div>
                 </div>
               </div>
