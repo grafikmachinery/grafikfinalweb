@@ -32,8 +32,6 @@ import {
   ArrowDown,
   User,
   Quote,
-  ShieldCheck,
-  Building2,
   Newspaper
 } from 'lucide-react';
 
@@ -819,84 +817,50 @@ function App() {
               </div>
             </div>
 
-            {/* 2. Company History as a Visual Timeline */}
+            {/* 2. Company Profile (Simple Text + Stat Cards) */}
             <section className="section container">
-              <div className="section-header-left" style={{ marginBottom: '36px' }}>
-                <span className="section-eyebrow">Corporate History</span>
-                <h2>Company Profile & Milestones</h2>
-                <p className="max-w-md" style={{ margin: '8px 0 0 0' }}>
-                  Over three decades of continuous engineering innovation, evolving from technical specialists into a globally trusted machinery manufacturer.
-                </p>
-              </div>
-
-              <div className="timeline-milestones-grid">
-                {/* Left: Interactive Timeline Track */}
-                <div className="timeline-track">
-                  <div className="timeline-node">
-                    <div className="timeline-node-bullet"></div>
-                    <div className="timeline-node-card">
-                      <span className="timeline-year-tag">1989 • Founded</span>
-                      <h3 className="timeline-node-title">Engineering Specialists Unite</h3>
-                      <p className="timeline-node-desc">
-                        Established by key engineering specialists possessing 35 years of collective field experience, founded to solve critical post-press production bottlenecks in folding, gluing, coating, and UV curing.
-                      </p>
-                    </div>
+              <div className="split-grid" style={{ marginBottom: '60px' }}>
+                <div className="text-content">
+                  <div className="section-header-left">
+                    <span className="section-eyebrow">Corporate History</span>
+                    <h2>Company Profile</h2>
                   </div>
-
-                  <div className="timeline-node">
-                    <div className="timeline-node-bullet"></div>
-                    <div className="timeline-node-card">
-                      <span className="timeline-year-tag">1992 • Registration</span>
-                      <h3 className="timeline-node-title">Official Corporate Incorporation</h3>
-                      <p className="timeline-node-desc">
-                        Officially registered as <strong>Grafik Machinery International</strong>. Expanded dedicated assembly facilities and established high-precision fabrication standards for nationwide machinery distribution.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="timeline-node">
-                    <div className="timeline-node-bullet"></div>
-                    <div className="timeline-node-card">
-                      <span className="timeline-year-tag">Present • Global Reach</span>
-                      <h3 className="timeline-node-title">Recognized Manufacturer & Exporter</h3>
-                      <p className="timeline-node-desc">
-                        Today serving leading printing houses across India, the Middle East, and South Asia. Exporting ~25% of overall volume while importing distinguished quality components (Cutting Sticks, Ink Cleaning Knives, and UV lamps) directly from the USA for global reliability.
-                      </p>
-                    </div>
-                  </div>
+                  <p>
+                    Established in 1989 (with official business registration in 1992) by key engineering specialists possessing 35 years of collective field experience, <strong>Grafik Machinery International</strong> has built brilliant expertise and in-depth industry knowledge to serve clients with better-than-the-best printing machinery.
+                  </p>
+                  <p>
+                    Today, we are a highly reputed manufacturer, exporter, supplier, and distributor with a unique collection of world-class post-press machinery. Our solutions resolve critical production challenges in folding, gluing, coating, and UV curing.
+                  </p>
+                  <p>
+                    Supported by a specialized team of experienced engineers, we cater to precise custom requirements beyond customer expectations. Our client base spans India as well as leading export markets in Middle Eastern and South Asian countries. We export approximately 25% of our overall volume, and import distinguished quality components (Cutting Sticks, Ink Cleaning Knives, and UV lamps) directly from the USA to deliver global reliability.
+                  </p>
                 </div>
 
-                {/* Right: Structured Stat Cards & Competitive Advantage */}
                 <div>
-                  <div className="fact-grid" style={{ marginBottom: '24px', gridTemplateColumns: 'repeat(2, 1fr)' }}>
+                  <div className="fact-grid">
                     <div className="fact-card">
                       <div className="fact-card-title">Business Type</div>
-                      <div className="fact-card-value" style={{ fontSize: '1.05rem' }}>Manufacturer & Exporter</div>
+                      <div className="fact-card-value">Manufacturer & Exporter</div>
                     </div>
                     <div className="fact-card">
                       <div className="fact-card-title">Established</div>
-                      <div className="fact-card-value" style={{ fontSize: '1.05rem' }}>1989 / 1992</div>
+                      <div className="fact-card-value">1989 / 1992</div>
                     </div>
                     <div className="fact-card">
                       <div className="fact-card-title">Staff Engineers</div>
-                      <div className="fact-card-value" style={{ fontSize: '1.05rem' }}>3 Specialists</div>
+                      <div className="fact-card-value">3 Specialists</div>
                     </div>
                     <div className="fact-card">
                       <div className="fact-card-title">Primary Markets</div>
-                      <div className="fact-card-value" style={{ fontSize: '1.05rem' }}>Middle East & South Asia</div>
+                      <div className="fact-card-value">Middle East & South Asia</div>
                     </div>
                   </div>
 
-                  <div style={{ backgroundColor: 'var(--neutral-light)', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-mid)', boxShadow: 'var(--shadow-sm)' }}>
-                    <h4 style={{ color: 'var(--primary-navy)', marginBottom: '10px', fontSize: '1.05rem', fontWeight: '700' }}>Competitive Advantage</h4>
-                    <p style={{ fontSize: '0.925rem', color: 'var(--neutral-body)', margin: '0 0 16px 0', lineHeight: 1.6 }}>
+                  <div style={{ backgroundColor: 'var(--neutral-light)', padding: '24px', borderRadius: '8px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)' }}>
+                    <h4 style={{ color: 'var(--primary-navy)', marginBottom: '12px' }}>Competitive Advantage</h4>
+                    <p style={{ fontSize: '0.95rem', margin: 0 }}>
                       Our stability is anchored on three core pillars: Excellent quality products, highly competitive pricing, and on-time international delivery.
                     </p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                      <span className="qa-badge">✓ 25% Export Ratio</span>
-                      <span className="qa-badge">✓ Imported USA Parts</span>
-                      <span className="qa-badge">✓ Custom Retrofits</span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -938,158 +902,7 @@ function App() {
               </div>
             </section>
 
-            {/* 4. Quality Assurance & Infrastructure */}
-            <section className="section container reveal-on-scroll">
-              <div className="section-header-left" style={{ marginBottom: '32px' }}>
-                <span className="section-eyebrow">Manufacturing Integrity</span>
-                <h2>Quality Standards & Infrastructure</h2>
-                <p className="max-w-md" style={{ margin: '8px 0 0 0' }}>
-                  Stringent multi-stage testing protocols backed by comprehensive in-house tooling and engineering facilities.
-                </p>
-              </div>
-
-              <div className="qa-infra-grid">
-                {/* Quality Assurance Card */}
-                <div className="qa-infra-card">
-                  <div className="qa-card-head">
-                    <div className="qa-card-icon">
-                      <ShieldCheck size={26} />
-                    </div>
-                    <div>
-                      <span className="section-eyebrow" style={{ marginBottom: '4px' }}>Quality Standards</span>
-                      <h3 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--primary-navy)' }}>Our Quality Assurance</h3>
-                    </div>
-                  </div>
-
-                  <p style={{ fontSize: '0.925rem', color: 'var(--neutral-body)', lineHeight: 1.65, marginBottom: '14px' }}>
-                    Grafik Machinery International's quest for quality is the key behind its ultimate success in the industry. Maintaining the highest standard of quality means satisfying client requirements in the best possible way — through the best products and services.
-                  </p>
-                  <p style={{ fontSize: '0.925rem', color: 'var(--neutral-body)', lineHeight: 1.65, margin: 0 }}>
-                    A dedicated quality control unit at the factory checks the entire production process, from procurement of raw materials (mild steel, electric goods, belts, lamps, etc.) to final delivery of finished products. Every machine is tested against international quality standards and inspected multiple times before delivery.
-                  </p>
-
-                  <div className="qa-card-badges">
-                    <span className="qa-badge">Multi-Stage Inspection</span>
-                    <span className="qa-badge">Raw Material Testing</span>
-                    <span className="qa-badge">Pre-Dispatch Trials</span>
-                  </div>
-                </div>
-
-                {/* Infrastructure Card */}
-                <div className="qa-infra-card">
-                  <div className="qa-card-head">
-                    <div className="qa-card-icon">
-                      <Building2 size={26} />
-                    </div>
-                    <div>
-                      <span className="section-eyebrow" style={{ marginBottom: '4px' }}>Advanced Facility</span>
-                      <h3 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--primary-navy)' }}>Our Infrastructure</h3>
-                    </div>
-                  </div>
-
-                  <p style={{ fontSize: '0.925rem', color: 'var(--neutral-body)', lineHeight: 1.65, marginBottom: '14px' }}>
-                    A robust infrastructure is the base of Grafik Machinery International's stability and success over nearly two decades. The company is equipped with every tool required for its trade, including a manufacturing unit loaded with sophisticated machinery for enhanced productivity and international quality standards, using cutting-edge production and quality-testing technology.
-                  </p>
-                  <p style={{ fontSize: '0.925rem', color: 'var(--neutral-body)', lineHeight: 1.65, margin: 0 }}>
-                    An in-house R&D facility keeps a team of experts engaged in continuous research for improvement of technology, products, and services. A highly skilled workforce makes the best use of this infrastructure to deliver the most reliable solutions in the field.
-                  </p>
-
-                  <div className="qa-card-badges">
-                    <span className="qa-badge">In-House R&D Unit</span>
-                    <span className="qa-badge">Precision Fabrication</span>
-                    <span className="qa-badge">Skilled Workforce</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* 5. Product Lines Overview */}
-            <section className="section section-alt">
-              <div className="container">
-                <div className="section-header-left" style={{ marginBottom: '32px' }}>
-                  <span className="section-eyebrow">Manufacturing Scope</span>
-                  <h2>Product Lines Overview</h2>
-                  <p className="max-w-md" style={{ margin: '8px 0 0 0' }}>
-                    We engineer a diverse catalog of automated post-press machines, retrofits, and specialized converting units.
-                  </p>
-                </div>
-
-                <div className="products-overview-grid">
-                  {/* Category 1: Folder-Gluers */}
-                  <div className="product-line-card">
-                    <div className="product-line-head">
-                      <div className="product-line-icon">
-                        <Layers size={22} />
-                      </div>
-                      <div>
-                        <div className="product-line-category">Packaging & Cartons</div>
-                        <h3 className="product-line-title">Folder-Gluers & Pasting</h3>
-                      </div>
-                    </div>
-                    <ul className="product-line-list">
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> Carton Folder Gluer</li>
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> Mini & Baby Folder Gluer</li>
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> Jumbo Corrugated Folder Gluer</li>
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> Carton Pasting Machine</li>
-                    </ul>
-                  </div>
-
-                  {/* Category 2: Coating & Curing */}
-                  <div className="product-line-card">
-                    <div className="product-line-head">
-                      <div className="product-line-icon">
-                        <Sun size={22} />
-                      </div>
-                      <div>
-                        <div className="product-line-category">Finishing & Curing</div>
-                        <h3 className="product-line-title">Coating & UV Systems</h3>
-                      </div>
-                    </div>
-                    <ul className="product-line-list">
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> UV Coating Machine (KBA)</li>
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> Interdeck UV Curing System</li>
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> High-Velocity Infrared Dryer</li>
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> Print Plus Coat Inline Coater</li>
-                    </ul>
-                  </div>
-
-                  {/* Category 3: Specialized Machinery */}
-                  <div className="product-line-card">
-                    <div className="product-line-head">
-                      <div className="product-line-icon">
-                        <Cpu size={22} />
-                      </div>
-                      <div>
-                        <div className="product-line-category">Converting & Auxiliary</div>
-                        <h3 className="product-line-title">Specialized Machinery</h3>
-                      </div>
-                    </div>
-                    <ul className="product-line-list">
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> Automatic Paper Banding Machine</li>
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> Customized Machine Retrofits</li>
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> Wide Range of Creasing Matrix</li>
-                      <li><Check size={16} style={{ color: 'var(--primary-steel)' }} /> Heavy-Duty Sheet Stackers</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="products-overview-cta-bar">
-                  <div style={{ textAlign: 'left' }}>
-                    <h4 style={{ margin: 0, color: 'var(--primary-navy)', fontSize: '1.05rem', fontWeight: '700' }}>
-                      Looking for technical specifications and detailed features?
-                    </h4>
-                    <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem', color: 'var(--neutral-body)' }}>
-                      Browse our full machinery portfolio with dimensions, speeds, and press compatibility details.
-                    </p>
-                  </div>
-                  <a href="#products" className="btn btn-primary" style={{ whiteSpace: 'nowrap' }}>
-                    View All Products <ArrowRight size={16} />
-                  </a>
-                </div>
-              </div>
-            </section>
-
-            {/* 6. Industry Exhibition Showcase */}
+            {/* 4. Industry Exhibition Showcase */}
             <section className="section container reveal-on-scroll">
               <div className="exhibitions-layout">
                 {/* Photo Gallery with Placeholders */}
@@ -1128,7 +941,7 @@ function App() {
               </div>
             </section>
 
-            {/* 7. Press & Publications (Placeholder) */}
+            {/* 5. Press & Publications (Placeholder) */}
             <section className="section container reveal-on-scroll" style={{ paddingTop: 0, paddingBottom: '70px' }}>
               <div className="section-header-left" style={{ marginBottom: '28px' }}>
                 <span className="section-eyebrow">Media & Recognition</span>
