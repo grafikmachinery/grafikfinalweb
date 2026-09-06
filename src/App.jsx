@@ -765,11 +765,11 @@ function App() {
               </div>
             </section>
 
-            {/* Installations Teaser Strip */}
+            {/* Installations and News Teaser Strip */}
             <section className="section container reveal-on-scroll">
-              <h2 className="text-center" style={{ marginBottom: '12px' }}>Recent Installations</h2>
+              <h2 className="text-center" style={{ marginBottom: '12px' }}>Installations and News</h2>
               <p className="text-center max-w-md" style={{ marginBottom: '48px' }}>
-                We support key offset printing houses globally. Here are some of our recent installations in leading commercial facilities.
+                We support key offset printing houses globally. Here are some of our recent installations and updates in leading commercial facilities.
               </p>
               
               <div className="install-row">
