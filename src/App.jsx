@@ -549,7 +549,7 @@ function App() {
                   href="#contact" 
                   className="btn btn-primary"
                   style={{ marginLeft: '12px', padding: '10px 20px' }}
-                >Get a Quote</a>
+                >Contact Us</a>
               </li>
             </ul>
           </nav>
@@ -609,7 +609,7 @@ function App() {
               href="#contact" 
               className="btn btn-primary"
               style={{ width: '100%' }}
-            >Get a Quote</a>
+            >Contact Us</a>
           </li>
         </ul>
       </div>
