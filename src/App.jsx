@@ -407,7 +407,7 @@ function App() {
         }
       } else {
         const cleanHash = hash.replace('#', '');
-        const validPages = ['home', 'about', 'products', 'gallery', 'brochure', 'contact'];
+        const validPages = ['home', 'about', 'products', 'gallery', 'contact'];
         if (validPages.includes(cleanHash)) {
           setCurrentPage(cleanHash);
         } else {
@@ -546,12 +546,6 @@ function App() {
               </li>
               <li>
                 <a 
-                  href="#brochure" 
-                  className={`nav-item-link ${currentPage === 'brochure' ? 'active' : ''}`}
-                >Brochure</a>
-              </li>
-              <li>
-                <a 
                   href="#contact" 
                   className="btn btn-primary"
                   style={{ marginLeft: '12px', padding: '10px 20px' }}
@@ -609,12 +603,6 @@ function App() {
               href="#gallery" 
               className={`mobile-nav-item-link ${currentPage === 'gallery' ? 'active' : ''}`}
             >Gallery</a>
-          </li>
-          <li>
-            <a 
-              href="#brochure" 
-              className={`mobile-nav-item-link ${currentPage === 'brochure' ? 'active' : ''}`}
-            >Brochure</a>
           </li>
           <li style={{ marginTop: '16px' }}>
             <a 
@@ -1115,17 +1103,14 @@ function App() {
                       </div>
 
                       {/* CTAs */}
-                      <div style={{ display: 'flex', gap: '16px', marginTop: '12px' }}>
+                      <div style={{ marginTop: '12px' }}>
                         <button 
                           className="btn btn-primary"
                           onClick={() => triggerQuoteRequest(product.name)}
-                          style={{ flex: 1 }}
+                          style={{ width: '100%' }}
                         >
                           Request Price Quote
                         </button>
-                        <a href="#brochure" className="btn btn-secondary">
-                          Brochure PDF
-                        </a>
                       </div>
                     </div>
                   </div>
@@ -1210,67 +1195,7 @@ function App() {
         )}
 
         {/* ====================================================
-            6. BROCHURE DOWNLOAD VIEW
-            ==================================================== */}
-        {currentPage === 'brochure' && (
-          <div className="animate-fade-in">
-            {/* Header strip */}
-            <div className="page-header-strip">
-              <div className="container">
-                <div className="section-header-left" style={{ marginBottom: 0 }}>
-                  <span className="section-eyebrow">PDF Documentation</span>
-                  <h1 className="page-header-title">Technical Brochure</h1>
-                  <div className="page-breadcrumbs">
-                    <span onClick={() => navigateTo('home')}>Home</span>
-                    <ChevronRight size={14} />
-                    <span className="active">Download Brochure</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Brochure Card */}
-            <section className="section container">
-              <div className="brochure-card animate-fade-in">
-                <div style={{ marginBottom: '24px' }}>
-                  <img src="/logo.png" alt="Grafik Machinery Logo" style={{ height: '80px', width: 'auto', objectFit: 'contain' }} />
-                </div>
-                
-                <h2>Download Company Brochure</h2>
-                <p className="max-w-md" style={{ marginTop: '12px' }}>
-                  Get the complete technical catalog of Grafik Machinery International. Access specifications for all standard models, including sizes, electrical setups, and custom inline retrofits.
-                </p>
-
-                <div className="brochure-meta">
-                  <div className="brochure-meta-item">
-                    <strong>File Format</strong>
-                    <span>PDF Document</span>
-                  </div>
-                  <div className="brochure-meta-item">
-                    <strong>File Size</strong>
-                    <span>1.2 MB</span>
-                  </div>
-                  <div className="brochure-meta-item">
-                    <strong>Last Updated</strong>
-                    <span>2026 Edition</span>
-                  </div>
-                </div>
-
-                <a 
-                  href="/brochure.pdf" 
-                  download="Grafik_Machinery_International_Brochure.pdf"
-                  className="btn btn-primary"
-                  style={{ minWidth: '220px' }}
-                >
-                  Download Brochure PDF <Download size={18} />
-                </a>
-              </div>
-            </section>
-          </div>
-        )}
-
-        {/* ====================================================
-            7. CONTACT US VIEW
+            6. CONTACT US VIEW
             ==================================================== */}
         {currentPage === 'contact' && (
           <div className="animate-fade-in">
@@ -1490,7 +1415,7 @@ function App() {
               <li><a href="#about">About Us</a></li>
               <li><a href="#products">Products Range</a></li>
               <li><a href="#gallery">Photo Gallery</a></li>
-              <li><a href="#brochure">Download Brochure</a></li>
+              <li><a href="#contact">Contact Us</a></li>
             </ul>
           </div>
 
