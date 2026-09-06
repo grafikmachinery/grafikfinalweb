@@ -614,6 +614,41 @@ function App() {
         </ul>
       </div>
 
+      {/* Fixed Social Media Side Rail (Homepage Only) */}
+      {currentPage === 'home' && (
+        <div className="social-side-rail" aria-label="Social media channels">
+          <a 
+            href="https://facebook.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-side-link"
+            aria-label="Facebook"
+          >
+            <FacebookIcon size={18} />
+            <span className="social-side-tooltip">Facebook</span>
+          </a>
+          <a 
+            href="https://youtube.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-side-link"
+            aria-label="YouTube"
+          >
+            <YoutubeIcon size={18} />
+            <span className="social-side-tooltip">YouTube</span>
+          </a>
+          <a 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); alert("LinkedIn Profile is Coming Soon!"); }}
+            className="social-side-link"
+            aria-label="LinkedIn"
+          >
+            <LinkedinIcon size={18} />
+            <span className="social-side-tooltip">LinkedIn</span>
+          </a>
+        </div>
+      )}
+
       {/* Main Pages Content Area */}
       <main className="main-content-flow">
         
@@ -622,39 +657,6 @@ function App() {
             ==================================================== */}
         {currentPage === 'home' && (
           <div className="animate-fade-in">
-            {/* Fixed Social Media Side Rail */}
-            <div className="social-side-rail">
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="social-side-link"
-                aria-label="Facebook"
-              >
-                <FacebookIcon size={18} />
-                <span className="social-side-tooltip">Facebook</span>
-              </a>
-              <a 
-                href="https://youtube.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="social-side-link"
-                aria-label="YouTube"
-              >
-                <YoutubeIcon size={18} />
-                <span className="social-side-tooltip">YouTube</span>
-              </a>
-              <a 
-                href="#" 
-                onClick={(e) => { e.preventDefault(); alert("LinkedIn Profile is Coming Soon!"); }}
-                className="social-side-link"
-                aria-label="LinkedIn"
-              >
-                <LinkedinIcon size={18} />
-                <span className="social-side-tooltip">LinkedIn</span>
-              </a>
-            </div>
-
             {/* Full-Bleed Auto-Rotating Slideshow Hero Section */}
             <section className="hero-section">
               {/* Full-bleed automatic photo slideshow background */}
