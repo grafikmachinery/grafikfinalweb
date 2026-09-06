@@ -32,7 +32,9 @@ import {
   ArrowDown,
   User,
   Quote,
-  Newspaper
+  Newspaper,
+  Factory,
+  Calendar
 } from 'lucide-react';
 
 // Custom Social SVG Icon Components (Lucide brand icons fallback)
@@ -818,84 +820,105 @@ function App() {
             </div>
 
             {/* 2. Company Profile (Simple Text + Stat Cards) */}
-            <section className="section container">
-              <div className="split-grid" style={{ marginBottom: '60px' }}>
-                <div className="text-content">
-                  <div className="section-header-left">
-                    <span className="section-eyebrow">Corporate History</span>
-                    <h2>Company Profile</h2>
-                  </div>
-                  <p>
-                    Established in 1989 (with official business registration in 1992) by key engineering specialists possessing 35 years of collective field experience, <strong>Grafik Machinery International</strong> has built brilliant expertise and in-depth industry knowledge to serve clients with better-than-the-best printing machinery.
-                  </p>
-                  <p>
-                    Today, we are a highly reputed manufacturer, exporter, supplier, and distributor with a unique collection of world-class post-press machinery. Our solutions resolve critical production challenges in folding, gluing, coating, and UV curing.
-                  </p>
-                  <p>
-                    Supported by a specialized team of experienced engineers, we cater to precise custom requirements beyond customer expectations. Our client base spans India as well as leading export markets in Middle Eastern and South Asian countries. We export approximately 25% of our overall volume, and import distinguished quality components (Cutting Sticks, Ink Cleaning Knives, and UV lamps) directly from the USA to deliver global reliability.
-                  </p>
-                </div>
-
-                <div>
-                  <div className="fact-grid">
-                    <div className="fact-card">
-                      <div className="fact-card-title">Business Type</div>
-                      <div className="fact-card-value">Manufacturer & Exporter</div>
+            <section className="about-section about-section-profile">
+              <div className="container">
+                <div className="split-grid">
+                  <div className="text-content">
+                    <div className="section-header-left">
+                      <span className="section-eyebrow">Corporate History</span>
+                      <h2>Company Profile</h2>
                     </div>
-                    <div className="fact-card">
-                      <div className="fact-card-title">Established</div>
-                      <div className="fact-card-value">1989 / 1992</div>
-                    </div>
-                    <div className="fact-card">
-                      <div className="fact-card-title">Staff Engineers</div>
-                      <div className="fact-card-value">3 Specialists</div>
-                    </div>
-                    <div className="fact-card">
-                      <div className="fact-card-title">Primary Markets</div>
-                      <div className="fact-card-value">Middle East & South Asia</div>
-                    </div>
-                  </div>
-
-                  <div style={{ backgroundColor: 'var(--neutral-light)', padding: '24px', borderRadius: '8px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)' }}>
-                    <h4 style={{ color: 'var(--primary-navy)', marginBottom: '12px' }}>Competitive Advantage</h4>
-                    <p style={{ fontSize: '0.95rem', margin: 0 }}>
-                      Our stability is anchored on three core pillars: Excellent quality products, highly competitive pricing, and on-time international delivery.
+                    <p>
+                      Established in 1989 (with official business registration in 1992) by key engineering specialists possessing 35 years of collective field experience, <strong>Grafik Machinery International</strong> has built brilliant expertise and in-depth industry knowledge to serve clients with better-than-the-best printing machinery.
                     </p>
+                    <p>
+                      Today, we are a highly reputed manufacturer, exporter, supplier, and distributor with a unique collection of world-class post-press machinery. Our solutions resolve critical production challenges in folding, gluing, coating, and UV curing.
+                    </p>
+                    <p>
+                      Supported by a specialized team of experienced engineers, we cater to precise custom requirements beyond customer expectations. Our client base spans India as well as leading export markets in Middle Eastern and South Asian countries. We export approximately 25% of our overall volume, and import distinguished quality components (Cutting Sticks, Ink Cleaning Knives, and UV lamps) directly from the USA to deliver global reliability.
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="fact-grid">
+                      <div className="fact-card">
+                        <div className="fact-card-icon">
+                          <Factory size={20} />
+                        </div>
+                        <div className="fact-card-title">Business Type</div>
+                        <div className="fact-card-value">Manufacturer & Exporter</div>
+                      </div>
+                      <div className="fact-card">
+                        <div className="fact-card-icon">
+                          <Calendar size={20} />
+                        </div>
+                        <div className="fact-card-title">Established</div>
+                        <div className="fact-card-value">1989 / 1992</div>
+                      </div>
+                      <div className="fact-card">
+                        <div className="fact-card-icon">
+                          <Users size={20} />
+                        </div>
+                        <div className="fact-card-title">Staff Engineers</div>
+                        <div className="fact-card-value">3 Specialists</div>
+                      </div>
+                      <div className="fact-card">
+                        <div className="fact-card-icon">
+                          <Globe size={20} />
+                        </div>
+                        <div className="fact-card-title">Primary Markets</div>
+                        <div className="fact-card-value">Middle East & South Asia</div>
+                      </div>
+                    </div>
+
+                    <div className="fact-advantage-card">
+                      <div className="fact-advantage-icon">
+                        <Award size={24} />
+                      </div>
+                      <div>
+                        <h4 className="fact-advantage-title">Competitive Advantage</h4>
+                        <p className="fact-advantage-desc">
+                          Our stability is anchored on three core pillars: Excellent quality products, highly competitive pricing, and on-time international delivery.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </section>
 
             {/* 3. Founder Section (Placeholder) */}
-            <section className="section container reveal-on-scroll" style={{ paddingTop: 0 }}>
-              <div className="founder-tribute-card">
-                <div className="section-header-left" style={{ marginBottom: '28px' }}>
-                  <span className="section-eyebrow">Leadership & Legacy</span>
-                  <h2>In Memory of Our Founder</h2>
-                </div>
-
-                <div className="founder-grid">
-                  {/* Founder Photo Box Placeholder */}
-                  <div className="founder-photo-box">
-                    <div className="founder-photo-icon">
-                      <User size={28} />
-                    </div>
-                    <div className="founder-photo-label">[PLACEHOLDER: Founder Photo]</div>
-                    <div className="founder-photo-sub">Portrait photo to be added</div>
+            <section className="about-section about-section-founder reveal-on-scroll">
+              <div className="container">
+                <div className="founder-tribute-card">
+                  <div className="section-header-left" style={{ marginBottom: '28px' }}>
+                    <span className="section-eyebrow">Leadership & Legacy</span>
+                    <h2>In Memory of Our Founder</h2>
                   </div>
 
-                  {/* Founder Editorial Tribute */}
-                  <div className="founder-editorial-content">
-                    <Quote size={40} className="founder-quote-icon" />
-                    <h3 className="founder-name">[Founder Name]</h3>
-                    <div className="founder-role">[Founder Title/Years]</div>
-                    
-                    <p className="founder-quote-text">
-                      "[Placeholder: 2-4 sentence founder bio/tribute to be added. Built on a foundation of mechanical integrity, tireless engineering precision, and a customer-first philosophy, our founder charted the vision that has propelled Grafik Machinery International through over three decades of manufacturing excellence.]"
-                    </p>
+                  <div className="founder-grid">
+                    {/* Founder Photo Box Placeholder */}
+                    <div className="founder-photo-box">
+                      <div className="founder-photo-icon">
+                        <User size={28} />
+                      </div>
+                      <div className="founder-photo-label">[PLACEHOLDER: Founder Photo]</div>
+                      <div className="founder-photo-sub">Portrait photo to be added</div>
+                    </div>
 
-                    <div className="founder-philosophy-badge">
-                      <span>Legacy of Craftsmanship • Commitment to Innovation • Customer Trust</span>
+                    {/* Founder Editorial Tribute */}
+                    <div className="founder-editorial-content">
+                      <Quote size={40} className="founder-quote-icon" />
+                      <h3 className="founder-name">[Founder Name]</h3>
+                      <div className="founder-role">[Founder Title/Years]</div>
+                      
+                      <p className="founder-quote-text">
+                        "[Placeholder: 2-4 sentence founder bio/tribute to be added. Built on a foundation of mechanical integrity, tireless engineering precision, and a customer-first philosophy, our founder charted the vision that has propelled Grafik Machinery International through over three decades of manufacturing excellence.]"
+                      </p>
+
+                      <div className="founder-philosophy-badge">
+                        <span>Legacy of Craftsmanship • Commitment to Innovation • Customer Trust</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -903,96 +926,110 @@ function App() {
             </section>
 
             {/* 4. Industry Exhibition Showcase */}
-            <section className="section container reveal-on-scroll">
-              <div className="exhibitions-layout">
-                {/* Photo Gallery with Placeholders */}
-                <div className="exhibitions-gallery-strip">
-                  <div className="exhibition-main-img-wrap">
-                    <img src="/about_exhibition.jpg" alt="Grafik Machinery Trade Show Exhibition" />
-                    <div className="exhibition-img-caption">
-                      Grafik Machinery International Live Demonstration Booth
+            <section className="about-section about-section-exhibitions reveal-on-scroll">
+              <div className="container">
+                <div className="exhibitions-layout">
+                  {/* Photo Gallery with Placeholders */}
+                  <div className="exhibitions-gallery-strip">
+                    <div className="exhibition-main-img-wrap">
+                      <img src="/about_exhibition.jpg" alt="Grafik Machinery Trade Show Exhibition" />
+                      <div className="exhibition-img-caption">
+                        Grafik Machinery International Live Demonstration Booth
+                      </div>
+                    </div>
+                    <div className="exhibition-placeholder-slot">
+                      <Camera size={22} className="exhibition-slot-icon" />
+                      <span className="exhibition-slot-label">[PLACEHOLDER: Exhibition Photo]</span>
+                      <span style={{ fontSize: '0.7rem', color: 'var(--accent-grey)', marginTop: '2px' }}>Machinery Live Demo</span>
+                    </div>
+                    <div className="exhibition-placeholder-slot">
+                      <Camera size={22} className="exhibition-slot-icon" />
+                      <span className="exhibition-slot-label">[PLACEHOLDER: Exhibition Photo]</span>
+                      <span style={{ fontSize: '0.7rem', color: 'var(--accent-grey)', marginTop: '2px' }}>Trade Expo Delegation</span>
                     </div>
                   </div>
-                  <div className="exhibition-placeholder-slot">
-                    <Camera size={22} className="exhibition-slot-icon" />
-                    <span className="exhibition-slot-label">[PLACEHOLDER: Exhibition Photo]</span>
-                    <span style={{ fontSize: '0.7rem', color: 'var(--accent-grey)', marginTop: '2px' }}>Machinery Live Demo</span>
-                  </div>
-                  <div className="exhibition-placeholder-slot">
-                    <Camera size={22} className="exhibition-slot-icon" />
-                    <span className="exhibition-slot-label">[PLACEHOLDER: Exhibition Photo]</span>
-                    <span style={{ fontSize: '0.7rem', color: 'var(--accent-grey)', marginTop: '2px' }}>Trade Expo Delegation</span>
-                  </div>
-                </div>
 
-                {/* Text Content */}
-                <div className="text-content">
-                  <div className="section-header-left">
-                    <span className="section-eyebrow">Global Presence</span>
-                    <h2>Industry Exhibition Showcase</h2>
+                  {/* Text Content */}
+                  <div className="text-content">
+                    <div className="section-header-left">
+                      <span className="section-eyebrow">Global Presence</span>
+                      <h2>Industry Exhibition Showcase</h2>
+                    </div>
+                    <p>
+                      Grafik Machinery International actively showcases its cutting-edge post-press solutions at leading national and international printing exhibitions. Our exhibition booths highlight our commitment to world-class manufacturing, displaying real machinery in action and facilitating direct B2B connections with packaging manufacturers worldwide.
+                    </p>
+                    <p>
+                      Our brand stands for engineering excellence, reliable performance, and robust support, establishing trust with print service providers across the globe.
+                    </p>
                   </div>
-                  <p>
-                    Grafik Machinery International actively showcases its cutting-edge post-press solutions at leading national and international printing exhibitions. Our exhibition booths highlight our commitment to world-class manufacturing, displaying real machinery in action and facilitating direct B2B connections with packaging manufacturers worldwide.
-                  </p>
-                  <p>
-                    Our brand stands for engineering excellence, reliable performance, and robust support, establishing trust with print service providers across the globe.
-                  </p>
                 </div>
               </div>
             </section>
 
             {/* 5. Press & Publications (Placeholder) */}
-            <section className="section container reveal-on-scroll" style={{ paddingTop: 0, paddingBottom: '70px' }}>
-              <div className="section-header-left" style={{ marginBottom: '28px' }}>
-                <span className="section-eyebrow">Media & Recognition</span>
-                <h2>Press & Publications</h2>
-                <p className="max-w-md" style={{ margin: '8px 0 0 0' }}>
-                  Industry coverage, technical features, and trade publication spotlights honoring our engineering milestones.
-                </p>
-              </div>
-
-              {/* Publication Logos Strip */}
-              <div className="press-strip-grid">
-                <div className="press-logo-placeholder">
-                  <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
-                  <span className="press-logo-text">[PLACEHOLDER: Publication Logo 1]</span>
-                </div>
-                <div className="press-logo-placeholder">
-                  <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
-                  <span className="press-logo-text">[PLACEHOLDER: Publication Logo 2]</span>
-                </div>
-                <div className="press-logo-placeholder">
-                  <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
-                  <span className="press-logo-text">[PLACEHOLDER: Publication Logo 3]</span>
-                </div>
-                <div className="press-logo-placeholder">
-                  <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
-                  <span className="press-logo-text">[PLACEHOLDER: Publication Logo 4]</span>
-                </div>
-              </div>
-
-              {/* 2 Article Cards */}
-              <div className="press-articles-grid">
-                <div className="press-article-card">
-                  <div className="press-meta-tag">[PLACEHOLDER: Print Tech Magazine • Feature Story]</div>
-                  <h3 className="press-article-title">[PLACEHOLDER: "Advancing Offset UV Coating & Inline Press Efficiencies"]</h3>
-                  <p className="press-article-snippet">
-                    [PLACEHOLDER: Technical spotlight profiling Grafik Machinery International's inline roller coaters and UV curing additions, examining production speed enhancements for Heidelberg and Komori presses.]
+            <section className="about-section about-section-press reveal-on-scroll">
+              <div className="container">
+                <div className="section-header-left" style={{ marginBottom: '28px' }}>
+                  <span className="section-eyebrow">Media & Recognition</span>
+                  <h2>Press & Publications</h2>
+                  <p className="max-w-md" style={{ margin: '8px 0 0 0' }}>
+                    Industry coverage, technical features, and trade publication spotlights honoring our engineering milestones.
                   </p>
-                  <span className="press-article-link">
-                    [Read Article Placeholder] <ExternalLink size={14} />
-                  </span>
                 </div>
 
-                <div className="press-article-card">
-                  <div className="press-meta-tag">[PLACEHOLDER: Packaging Journal • Industrial Review]</div>
-                  <h3 className="press-article-title">[PLACEHOLDER: "High-Speed Carton Folder-Gluers Delivering Precision for Indian Converters"]</h3>
-                  <p className="press-article-snippet">
-                    [PLACEHOLDER: Industry overview highlighting robust lock-bottom carton pasting equipment designed for multi-shift manufacturing reliability in competitive packaging sectors.]
-                  </p>
-                  <span className="press-article-link">
-                    [Read Article Placeholder] <ExternalLink size={14} />
-                  </span>
+                {/* Publication Logos Strip */}
+                <div className="press-strip-grid">
+                  <div className="press-logo-placeholder">
+                    <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
+                    <span className="press-logo-text">[PLACEHOLDER: Publication Logo 1]</span>
+                  </div>
+                  <div className="press-logo-placeholder">
+                    <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
+                    <span className="press-logo-text">[PLACEHOLDER: Publication Logo 2]</span>
+                  </div>
+                  <div className="press-logo-placeholder">
+                    <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
+                    <span className="press-logo-text">[PLACEHOLDER: Publication Logo 3]</span>
+                  </div>
+                  <div className="press-logo-placeholder">
+                    <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
+                    <span className="press-logo-text">[PLACEHOLDER: Publication Logo 4]</span>
+                  </div>
+                </div>
+
+                {/* 2 Article Cards */}
+                <div className="press-articles-grid">
+                  <div className="press-article-card">
+                    <div className="press-article-top">
+                      <div className="press-article-icon-badge">
+                        <FileText size={15} />
+                      </div>
+                      <div className="press-meta-tag">[PLACEHOLDER: Print Tech Magazine • Feature Story]</div>
+                    </div>
+                    <h3 className="press-article-title">[PLACEHOLDER: "Advancing Offset UV Coating & Inline Press Efficiencies"]</h3>
+                    <p className="press-article-snippet">
+                      [PLACEHOLDER: Technical spotlight profiling Grafik Machinery International's inline roller coaters and UV curing additions, examining production speed enhancements for Heidelberg and Komori presses.]
+                    </p>
+                    <span className="press-article-link">
+                      [Read Article Placeholder] <ExternalLink size={14} />
+                    </span>
+                  </div>
+
+                  <div className="press-article-card">
+                    <div className="press-article-top">
+                      <div className="press-article-icon-badge">
+                        <FileText size={15} />
+                      </div>
+                      <div className="press-meta-tag">[PLACEHOLDER: Packaging Journal • Industrial Review]</div>
+                    </div>
+                    <h3 className="press-article-title">[PLACEHOLDER: "High-Speed Carton Folder-Gluers Delivering Precision for Indian Converters"]</h3>
+                    <p className="press-article-snippet">
+                      [PLACEHOLDER: Industry overview highlighting robust lock-bottom carton pasting equipment designed for multi-shift manufacturing reliability in competitive packaging sectors.]
+                    </p>
+                    <span className="press-article-link">
+                      [Read Article Placeholder] <ExternalLink size={14} />
+                    </span>
+                  </div>
                 </div>
               </div>
             </section>
