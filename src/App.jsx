@@ -623,7 +623,7 @@ function App() {
       {currentPage === 'home' && (
         <div className="social-side-rail" aria-label="Social media channels">
           <a 
-            href="https://facebook.com" 
+            href="https://www.facebook.com/Grafikmachinery" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="social-side-link"
@@ -633,7 +633,7 @@ function App() {
             <span className="social-side-tooltip">Facebook</span>
           </a>
           <a 
-            href="https://youtube.com" 
+            href="https://www.youtube.com/@grafikmachinery" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="social-side-link"
@@ -1539,7 +1539,7 @@ function App() {
           
           <div className="footer-socials">
             <a 
-              href="https://facebook.com" 
+              href="https://www.facebook.com/Grafikmachinery" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="footer-social-link"
@@ -1548,7 +1548,7 @@ function App() {
               <FacebookIcon size={20} />
             </a>
             <a 
-              href="https://youtube.com" 
+              href="https://www.youtube.com/@grafikmachinery" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="footer-social-link"
