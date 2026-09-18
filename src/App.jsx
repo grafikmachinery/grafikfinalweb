@@ -350,6 +350,30 @@ const INSTALLATIONS = [
   { id: 10, client: 'Flutes and Grafix', location: 'Bawana, New Delhi', press: 'Print Plus Coat on Heidelberg SORMZ and UV & IR Drier' }
 ];
 
+// Exhibition slideshow data
+const EXHIBITION_SLIDES = [
+  {
+    src: '/about_exhibition.jpg',
+    title: 'Grafik Machinery Live Demonstration Booth',
+    event: 'Printpack India · Greater Noida',
+  },
+  {
+    src: null,
+    title: '[PLACEHOLDER: Exhibition Photo 2]',
+    event: 'All India Printing & Packaging Expo · New Delhi',
+  },
+  {
+    src: null,
+    title: '[PLACEHOLDER: Exhibition Photo 3]',
+    event: 'drupa · Düsseldorf, Germany',
+  },
+  {
+    src: null,
+    title: '[PLACEHOLDER: Exhibition Photo 4]',
+    event: 'IPEX · London, UK',
+  },
+];
+
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedProductId, setSelectedProductId] = useState('');
@@ -357,6 +381,7 @@ function App() {
   const [quoteSubject, setQuoteSubject] = useState('');
   const [scrolled, setScrolled] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [exhibitionSlide, setExhibitionSlide] = useState(0);
 
   // Auto-rotating Hero Slideshow (5.5s per image)
   useEffect(() => {
@@ -364,6 +389,14 @@ function App() {
       setCurrentSlide(prev => (prev + 1) % HERO_SLIDES.length);
     }, 5500);
     return () => clearInterval(slideInterval);
+  }, []);
+
+  // Auto-rotating Exhibition Slideshow (4s per slide)
+  useEffect(() => {
+    const exInterval = setInterval(() => {
+      setExhibitionSlide(prev => (prev + 1) % EXHIBITION_SLIDES.length);
+    }, 4000);
+    return () => clearInterval(exInterval);
   }, []);
   
   // Contact Form State
@@ -876,43 +909,72 @@ function App() {
               </div>
             </section>
 
-            {/* 4. Industry Exhibition Showcase */}
+            {/* 4. Industry Exhibition Showcase — Full-Width Slideshow */}
             <section className="about-section about-section-exhibitions reveal-on-scroll">
               <div className="container">
-                <div className="exhibitions-layout">
-                  {/* Photo Gallery with Placeholders */}
-                  <div className="exhibitions-gallery-strip">
-                    <div className="exhibition-main-img-wrap">
-                      <img src="/about_exhibition.jpg" alt="Grafik Machinery Trade Show Exhibition" />
-                      <div className="exhibition-img-caption">
-                        Grafik Machinery International Live Demonstration Booth
-                      </div>
-                    </div>
-                    <div className="exhibition-placeholder-slot">
-                      <Camera size={22} className="exhibition-slot-icon" />
-                      <span className="exhibition-slot-label">[PLACEHOLDER: Exhibition Photo]</span>
-                      <span style={{ fontSize: '0.7rem', color: 'var(--accent-grey)', marginTop: '2px' }}>Machinery Live Demo</span>
-                    </div>
-                    <div className="exhibition-placeholder-slot">
-                      <Camera size={22} className="exhibition-slot-icon" />
-                      <span className="exhibition-slot-label">[PLACEHOLDER: Exhibition Photo]</span>
-                      <span style={{ fontSize: '0.7rem', color: 'var(--accent-grey)', marginTop: '2px' }}>Trade Expo Delegation</span>
-                    </div>
-                  </div>
+                <div className="section-header-left exhibition-section-header">
+                  <span className="section-eyebrow exhibition-eyebrow">Global Presence</span>
+                  <h2 className="exhibition-heading">Industry Exhibition Showcase</h2>
+                </div>
+              </div>
 
-                  {/* Text Content */}
-                  <div className="text-content">
-                    <div className="section-header-left">
-                      <span className="section-eyebrow">Global Presence</span>
-                      <h2>Industry Exhibition Showcase</h2>
+              {/* Full-Width Slideshow */}
+              <div className="exhibition-slideshow">
+                {EXHIBITION_SLIDES.map((slide, idx) => (
+                  <div
+                    key={idx}
+                    className={`exhibition-slide ${
+                      idx === exhibitionSlide ? 'exhibition-slide--active' : ''
+                    }`}
+                  >
+                    {slide.src ? (
+                      <img
+                        src={slide.src}
+                        alt={slide.title}
+                        className="exhibition-slide-img"
+                      />
+                    ) : (
+                      <div className="exhibition-slide-placeholder">
+                        <Camera size={36} className="exhibition-slide-cam" />
+                        <span className="exhibition-slide-placeholder-text">{slide.title}</span>
+                      </div>
+                    )}
+                    {/* Title overlay */}
+                    <div className="exhibition-slide-overlay">
+                      <div className="exhibition-slide-event">{slide.event}</div>
+                      <div className="exhibition-slide-title">{slide.title}</div>
                     </div>
-                    <p>
-                      Grafik Machinery International actively showcases its cutting-edge post-press solutions at leading national and international printing exhibitions. Our exhibition booths highlight our commitment to world-class manufacturing, displaying real machinery in action and facilitating direct B2B connections with packaging manufacturers worldwide.
-                    </p>
-                    <p>
-                      Our brand stands for engineering excellence, reliable performance, and robust support, establishing trust with print service providers across the globe.
-                    </p>
                   </div>
+                ))}
+
+                {/* Prev / Next buttons */}
+                <button
+                  className="exhibition-nav exhibition-nav--prev"
+                  onClick={() => setExhibitionSlide(p => (p - 1 + EXHIBITION_SLIDES.length) % EXHIBITION_SLIDES.length)}
+                  aria-label="Previous exhibition"
+                >
+                  &#8592;
+                </button>
+                <button
+                  className="exhibition-nav exhibition-nav--next"
+                  onClick={() => setExhibitionSlide(p => (p + 1) % EXHIBITION_SLIDES.length)}
+                  aria-label="Next exhibition"
+                >
+                  &#8594;
+                </button>
+
+                {/* Dot indicators */}
+                <div className="exhibition-dots">
+                  {EXHIBITION_SLIDES.map((_, idx) => (
+                    <button
+                      key={idx}
+                      className={`exhibition-dot ${
+                        idx === exhibitionSlide ? 'exhibition-dot--active' : ''
+                      }`}
+                      onClick={() => setExhibitionSlide(idx)}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
             </section>
