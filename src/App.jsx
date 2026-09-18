@@ -820,7 +820,7 @@ function App() {
             {/* 2. Company Profile */}
             <section className="about-section about-section-profile">
               <div className="container">
-                <div className="about-profile-content" style={{ maxWidth: '860px', margin: '0 auto' }}>
+                <div className="about-profile-content">
                   <div className="section-header-left">
                     <span className="section-eyebrow">Corporate History</span>
                     <h2>Company Profile</h2>
