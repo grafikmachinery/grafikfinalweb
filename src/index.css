@@ -1123,12 +1123,12 @@ p {
   background-size: 32px 32px;
   border-top: 1px solid rgba(255,255,255,0.07);
   border-bottom: 1px solid rgba(11,37,69,0.4);
-  padding: 80px 0 0 0; /* bottom padding handled by slideshow */
+  padding: 44px 0 52px;
 }
 
 /* Section heading inside exhibitions */
 .exhibition-section-header {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .exhibition-eyebrow {
@@ -1138,26 +1138,28 @@ p {
 
 .exhibition-heading {
   color: var(--neutral-white) !important;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
-/* Full-width slideshow wrapper */
+/* Slideshow wrapper — contained, fixed height */
 .exhibition-slideshow {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 7;
+  height: 380px;
   overflow: hidden;
   background: #04111e;
+  border-radius: var(--radius-md);
+  box-shadow: 0 24px 48px -12px rgba(4,17,30,0.6);
 }
 
 @media (max-width: 768px) {
   .exhibition-slideshow {
-    aspect-ratio: 4 / 3;
+    height: 240px;
   }
   .about-section-exhibitions {
-    padding-top: 56px;
+    padding: 36px 0 40px;
   }
 }
 

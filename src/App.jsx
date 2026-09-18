@@ -909,72 +909,72 @@ function App() {
               </div>
             </section>
 
-            {/* 4. Industry Exhibition Showcase — Full-Width Slideshow */}
+            {/* 4. Industry Exhibition Showcase — Slideshow */}
             <section className="about-section about-section-exhibitions reveal-on-scroll">
               <div className="container">
                 <div className="section-header-left exhibition-section-header">
                   <span className="section-eyebrow exhibition-eyebrow">Global Presence</span>
                   <h2 className="exhibition-heading">Industry Exhibition Showcase</h2>
                 </div>
-              </div>
 
-              {/* Full-Width Slideshow */}
-              <div className="exhibition-slideshow">
-                {EXHIBITION_SLIDES.map((slide, idx) => (
-                  <div
-                    key={idx}
-                    className={`exhibition-slide ${
-                      idx === exhibitionSlide ? 'exhibition-slide--active' : ''
-                    }`}
-                  >
-                    {slide.src ? (
-                      <img
-                        src={slide.src}
-                        alt={slide.title}
-                        className="exhibition-slide-img"
-                      />
-                    ) : (
-                      <div className="exhibition-slide-placeholder">
-                        <Camera size={36} className="exhibition-slide-cam" />
-                        <span className="exhibition-slide-placeholder-text">{slide.title}</span>
-                      </div>
-                    )}
-                    {/* Title overlay */}
-                    <div className="exhibition-slide-overlay">
-                      <div className="exhibition-slide-event">{slide.event}</div>
-                      <div className="exhibition-slide-title">{slide.title}</div>
-                    </div>
-                  </div>
-                ))}
-
-                {/* Prev / Next buttons */}
-                <button
-                  className="exhibition-nav exhibition-nav--prev"
-                  onClick={() => setExhibitionSlide(p => (p - 1 + EXHIBITION_SLIDES.length) % EXHIBITION_SLIDES.length)}
-                  aria-label="Previous exhibition"
-                >
-                  &#8592;
-                </button>
-                <button
-                  className="exhibition-nav exhibition-nav--next"
-                  onClick={() => setExhibitionSlide(p => (p + 1) % EXHIBITION_SLIDES.length)}
-                  aria-label="Next exhibition"
-                >
-                  &#8594;
-                </button>
-
-                {/* Dot indicators */}
-                <div className="exhibition-dots">
-                  {EXHIBITION_SLIDES.map((_, idx) => (
-                    <button
+                {/* Slideshow — contained within container */}
+                <div className="exhibition-slideshow">
+                  {EXHIBITION_SLIDES.map((slide, idx) => (
+                    <div
                       key={idx}
-                      className={`exhibition-dot ${
-                        idx === exhibitionSlide ? 'exhibition-dot--active' : ''
+                      className={`exhibition-slide ${
+                        idx === exhibitionSlide ? 'exhibition-slide--active' : ''
                       }`}
-                      onClick={() => setExhibitionSlide(idx)}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
+                    >
+                      {slide.src ? (
+                        <img
+                          src={slide.src}
+                          alt={slide.title}
+                          className="exhibition-slide-img"
+                        />
+                      ) : (
+                        <div className="exhibition-slide-placeholder">
+                          <Camera size={36} className="exhibition-slide-cam" />
+                          <span className="exhibition-slide-placeholder-text">{slide.title}</span>
+                        </div>
+                      )}
+                      {/* Title overlay */}
+                      <div className="exhibition-slide-overlay">
+                        <div className="exhibition-slide-event">{slide.event}</div>
+                        <div className="exhibition-slide-title">{slide.title}</div>
+                      </div>
+                    </div>
                   ))}
+
+                  {/* Prev / Next buttons */}
+                  <button
+                    className="exhibition-nav exhibition-nav--prev"
+                    onClick={() => setExhibitionSlide(p => (p - 1 + EXHIBITION_SLIDES.length) % EXHIBITION_SLIDES.length)}
+                    aria-label="Previous exhibition"
+                  >
+                    &#8592;
+                  </button>
+                  <button
+                    className="exhibition-nav exhibition-nav--next"
+                    onClick={() => setExhibitionSlide(p => (p + 1) % EXHIBITION_SLIDES.length)}
+                    aria-label="Next exhibition"
+                  >
+                    &#8594;
+                  </button>
+
+                  {/* Dot indicators */}
+                  <div className="exhibition-dots">
+                    {EXHIBITION_SLIDES.map((_, idx) => (
+                      <button
+                        key={idx}
+                        className={`exhibition-dot ${
+                          idx === exhibitionSlide ? 'exhibition-dot--active' : ''
+                        }`}
+                        onClick={() => setExhibitionSlide(idx)}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </section>
