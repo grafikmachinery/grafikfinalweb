@@ -9,7 +9,6 @@ import {
   Download, 
   PlusSquare, 
   Activity, 
-  Award, 
   Shield, 
   Clock, 
   Globe, 
@@ -33,8 +32,7 @@ import {
   User,
   Quote,
   Newspaper,
-  Factory,
-  Calendar
+  Factory
 } from 'lucide-react';
 
 // Custom Social SVG Icon Components (Lucide brand icons fallback)
@@ -819,70 +817,23 @@ function App() {
               </div>
             </div>
 
-            {/* 2. Company Profile (Simple Text + Stat Cards) */}
+            {/* 2. Company Profile */}
             <section className="about-section about-section-profile">
               <div className="container">
-                <div className="split-grid">
-                  <div className="text-content">
-                    <div className="section-header-left">
-                      <span className="section-eyebrow">Corporate History</span>
-                      <h2>Company Profile</h2>
-                    </div>
-                    <p>
-                      Established in 1989 (with official business registration in 1992) by key engineering specialists possessing 35 years of collective field experience, <strong>Grafik Machinery International</strong> has built brilliant expertise and in-depth industry knowledge to serve clients with better-than-the-best printing machinery.
-                    </p>
-                    <p>
-                      Today, we are a highly reputed manufacturer, exporter, supplier, and distributor with a unique collection of world-class post-press machinery. Our solutions resolve critical production challenges in folding, gluing, coating, and UV curing.
-                    </p>
-                    <p>
-                      Supported by a specialized team of experienced engineers, we cater to precise custom requirements beyond customer expectations. Our client base spans India as well as leading export markets in Middle Eastern and South Asian countries. We export approximately 25% of our overall volume, and import distinguished quality components (Cutting Sticks, Ink Cleaning Knives, and UV lamps) directly from the USA to deliver global reliability.
-                    </p>
+                <div className="about-profile-content" style={{ maxWidth: '860px', margin: '0 auto' }}>
+                  <div className="section-header-left">
+                    <span className="section-eyebrow">Corporate History</span>
+                    <h2>Company Profile</h2>
                   </div>
-
-                  <div>
-                    <div className="fact-grid">
-                      <div className="fact-card">
-                        <div className="fact-card-icon">
-                          <Factory size={20} />
-                        </div>
-                        <div className="fact-card-title">Business Type</div>
-                        <div className="fact-card-value">Manufacturer & Exporter</div>
-                      </div>
-                      <div className="fact-card">
-                        <div className="fact-card-icon">
-                          <Calendar size={20} />
-                        </div>
-                        <div className="fact-card-title">Established</div>
-                        <div className="fact-card-value">1989 / 1992</div>
-                      </div>
-                      <div className="fact-card">
-                        <div className="fact-card-icon">
-                          <Users size={20} />
-                        </div>
-                        <div className="fact-card-title">Staff Engineers</div>
-                        <div className="fact-card-value">3 Specialists</div>
-                      </div>
-                      <div className="fact-card">
-                        <div className="fact-card-icon">
-                          <Globe size={20} />
-                        </div>
-                        <div className="fact-card-title">Primary Markets</div>
-                        <div className="fact-card-value">Middle East & South Asia</div>
-                      </div>
-                    </div>
-
-                    <div className="fact-advantage-card">
-                      <div className="fact-advantage-icon">
-                        <Award size={24} />
-                      </div>
-                      <div>
-                        <h4 className="fact-advantage-title">Competitive Advantage</h4>
-                        <p className="fact-advantage-desc">
-                          Our stability is anchored on three core pillars: Excellent quality products, highly competitive pricing, and on-time international delivery.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <p>
+                    Established in 1989 (with official business registration in 1992) by key engineering specialists possessing 35 years of collective field experience, <strong>Grafik Machinery International</strong> has built brilliant expertise and in-depth industry knowledge to serve clients with better-than-the-best printing machinery.
+                  </p>
+                  <p>
+                    Today, we are a highly reputed manufacturer, exporter, supplier, and distributor with a unique collection of world-class post-press machinery. Our solutions resolve critical production challenges in folding, gluing, coating, and UV curing.
+                  </p>
+                  <p>
+                    Supported by a specialized team of experienced engineers, we cater to precise custom requirements beyond customer expectations. Our client base spans India as well as leading export markets in Middle Eastern and South Asian countries. We export approximately 25% of our overall volume, and import distinguished quality components (Cutting Sticks, Ink Cleaning Knives, and UV lamps) directly from the USA to deliver global reliability.
+                  </p>
                 </div>
               </div>
             </section>
