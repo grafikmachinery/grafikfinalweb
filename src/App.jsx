@@ -374,6 +374,58 @@ const EXHIBITION_SLIDES = [
   },
 ];
 
+// Press & Publications Coverage Data
+const PRESS_PUBLICATIONS = [
+  { name: 'PrintWeek India' },
+  { name: 'PRESSIdeas' },
+  { name: 'Print-Packaging Blog', sub: 'Official Print-Packaging Blog' }
+];
+
+const PRESS_ARTICLES = [
+  {
+    title: "PrintPack 2019: Gandhinagar's Ramdoot invests in folder-gluer from Grafik",
+    source: 'PrintWeek India',
+    author: 'Rahul Kumar',
+    summary: "Gandhinagar-based Ramdoot Packaging purchased the folder-gluer on display at Grafik Machinery International's stall — the New Delhi manufacturer of folder-gluers and supplier of LED UV printing solutions.",
+    url: 'https://www.printweek.in/article/printpack-2019-gandhinagar%E2%80%99s-ramdoot-invests-in-foldergluer-from-grafik/4f0mdb946bmw53e6zgwksxh8dx'
+  },
+  {
+    title: "Kanishk Jain: 'LED UV curing systems to replace mercury systems, soon'",
+    source: 'PrintWeek India',
+    author: 'Sriraam Selvam',
+    summary: "Kanishk Jain, proprietor of Delhi-based Grafik Machinery, shares his thoughts on LED UV technology and the company's roadmap in a Q&A.",
+    url: 'https://www.printweek.in/article/kanishk-jain-led-uv-soon-mercury-systems/4wj86vsxjv53r2k7zj13m0n34x'
+  },
+  {
+    title: 'Grafik Machinery announces multiple deals',
+    source: 'PrintWeek India',
+    author: 'Rahul Kumar',
+    summary: 'New Delhi-based Grafik Machinery India announced the sale of a window patching and carton lining machine to Box Corrugated (Madhya Pradesh) and an automatic folder-gluer for straight-line and crash-lock-bottom cartons to Baddi-based Saroj Prints.',
+    url: 'https://www.printweek.in/article/grafik-machinery-announces-multiple-deals/4hnejrekqghfm1rtrz09b9t4d3'
+  },
+  {
+    title: 'Grafik Machinery presents LED UV and Carton Folder Gluer',
+    source: 'PRESSIdeas',
+    author: null,
+    summary: 'Grafik Machinery International opened 2020 with a strong Pamex show, drawing serious enquiries for its LED UV and Carton Folder Gluer lines, alongside its Interdeck UV System and Carton Folder Gluers for duplex and corrugated cartons.',
+    url: 'https://pressideas.com/grafik-machinery-presents-led-uv-and-carton-folder-gluer/'
+  },
+  {
+    title: 'Grafik Machinery Launches Interdeck UV Curing System',
+    source: 'Official Print-Packaging Blog',
+    author: null,
+    summary: 'Grafik Machinery introduced its interdeck UV curing system, installable between printing units for instant curing of UV inks, with proper cooling to protect the press. Its Print Plus Coat inline coating device has been installed across Haryana, Mumbai, Guwahati, and New Delhi.',
+    url: 'https://print-packagingblog.com/grafik-machinery-launches-interdeck-uv-curing-system/'
+  },
+  {
+    title: "Grafik Machinery's second UV curing system in Dubai",
+    source: 'PrintWeek India',
+    author: null,
+    summary: "Grafik Machinery announced the installation of its second UV curing system and an automatic sheet stacker in Dubai, fitted on Desco's Presstek 34 DI digital printing machine — its fourth overseas installation in 12 months.",
+    url: 'https://www.printweek.in/article/grafik-machinery-8217-uv-curing-dubai/49sskt5vsasv6ycjsrjxv4n8ny'
+  }
+];
+
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedProductId, setSelectedProductId] = useState('');
@@ -909,77 +961,71 @@ function App() {
               </div>
             </section>
 
-            {/* 4. Industry Exhibition Showcase — Slideshow */}
+            {/* 4. Industry Exhibition Showcase — Split Layout */}
             <section className="about-section about-section-exhibitions reveal-on-scroll">
               <div className="container">
-                <div className="section-header-left exhibition-section-header">
-                  <span className="section-eyebrow exhibition-eyebrow">Global Presence</span>
-                  <h2 className="exhibition-heading">Industry Exhibition Showcase</h2>
-                </div>
+                <div className="exhibition-split">
 
-                {/* Slideshow — contained within container */}
-                <div className="exhibition-slideshow">
-                  {EXHIBITION_SLIDES.map((slide, idx) => (
-                    <div
-                      key={idx}
-                      className={`exhibition-slide ${
-                        idx === exhibitionSlide ? 'exhibition-slide--active' : ''
-                      }`}
-                    >
-                      {slide.src ? (
-                        <img
-                          src={slide.src}
-                          alt={slide.title}
-                          className="exhibition-slide-img"
+                  {/* Left: Heading text */}
+                  <div className="exhibition-text">
+                    <span className="section-eyebrow exhibition-eyebrow">Global Presence</span>
+                    <h2 className="exhibition-heading">Industry Exhibition Showcase</h2>
+                    <p className="exhibition-subtext">
+                      Grafik Machinery International actively showcases at leading national and international printing exhibitions — connecting directly with packaging manufacturers worldwide.
+                    </p>
+                    {/* Dot indicators — placed left under text */}
+                    <div className="exhibition-dots">
+                      {EXHIBITION_SLIDES.map((_, idx) => (
+                        <button
+                          key={idx}
+                          className={`exhibition-dot ${idx === exhibitionSlide ? 'exhibition-dot--active' : ''}`}
+                          onClick={() => setExhibitionSlide(idx)}
+                          aria-label={`Go to slide ${idx + 1}`}
                         />
-                      ) : (
-                        <div className="exhibition-slide-placeholder">
-                          <Camera size={36} className="exhibition-slide-cam" />
-                          <span className="exhibition-slide-placeholder-text">{slide.title}</span>
-                        </div>
-                      )}
-                      {/* Title overlay */}
-                      <div className="exhibition-slide-overlay">
-                        <div className="exhibition-slide-event">{slide.event}</div>
-                        <div className="exhibition-slide-title">{slide.title}</div>
-                      </div>
+                      ))}
                     </div>
-                  ))}
-
-                  {/* Prev / Next buttons */}
-                  <button
-                    className="exhibition-nav exhibition-nav--prev"
-                    onClick={() => setExhibitionSlide(p => (p - 1 + EXHIBITION_SLIDES.length) % EXHIBITION_SLIDES.length)}
-                    aria-label="Previous exhibition"
-                  >
-                    &#8592;
-                  </button>
-                  <button
-                    className="exhibition-nav exhibition-nav--next"
-                    onClick={() => setExhibitionSlide(p => (p + 1) % EXHIBITION_SLIDES.length)}
-                    aria-label="Next exhibition"
-                  >
-                    &#8594;
-                  </button>
-
-                  {/* Dot indicators */}
-                  <div className="exhibition-dots">
-                    {EXHIBITION_SLIDES.map((_, idx) => (
-                      <button
-                        key={idx}
-                        className={`exhibition-dot ${
-                          idx === exhibitionSlide ? 'exhibition-dot--active' : ''
-                        }`}
-                        onClick={() => setExhibitionSlide(idx)}
-                        aria-label={`Go to slide ${idx + 1}`}
-                      />
-                    ))}
                   </div>
+
+                  {/* Right: Slideshow */}
+                  <div className="exhibition-slideshow">
+                    {EXHIBITION_SLIDES.map((slide, idx) => (
+                      <div
+                        key={idx}
+                        className={`exhibition-slide ${idx === exhibitionSlide ? 'exhibition-slide--active' : ''}`}
+                      >
+                        {slide.src ? (
+                          <img src={slide.src} alt={slide.title} className="exhibition-slide-img" />
+                        ) : (
+                          <div className="exhibition-slide-placeholder">
+                            <Camera size={32} className="exhibition-slide-cam" />
+                            <span className="exhibition-slide-placeholder-text">{slide.title}</span>
+                          </div>
+                        )}
+                        <div className="exhibition-slide-overlay">
+                          <div className="exhibition-slide-event">{slide.event}</div>
+                          <div className="exhibition-slide-title">{slide.title}</div>
+                        </div>
+                      </div>
+                    ))}
+
+                    {/* Prev / Next */}
+                    <button
+                      className="exhibition-nav exhibition-nav--prev"
+                      onClick={() => setExhibitionSlide(p => (p - 1 + EXHIBITION_SLIDES.length) % EXHIBITION_SLIDES.length)}
+                      aria-label="Previous exhibition"
+                    >&#8592;</button>
+                    <button
+                      className="exhibition-nav exhibition-nav--next"
+                      onClick={() => setExhibitionSlide(p => (p + 1) % EXHIBITION_SLIDES.length)}
+                      aria-label="Next exhibition"
+                    >&#8594;</button>
+                  </div>
+
                 </div>
               </div>
             </section>
 
-            {/* 5. Press & Publications (Placeholder) */}
+            {/* 5. Press & Publications — Real Industry Coverage */}
             <section className="about-section about-section-press reveal-on-scroll">
               <div className="container">
                 <div className="section-header-left" style={{ marginBottom: '28px' }}>
@@ -990,59 +1036,44 @@ function App() {
                   </p>
                 </div>
 
-                {/* Publication Logos Strip */}
+                {/* Publication Names Strip Badges */}
                 <div className="press-strip-grid">
-                  <div className="press-logo-placeholder">
-                    <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
-                    <span className="press-logo-text">[PLACEHOLDER: Publication Logo 1]</span>
-                  </div>
-                  <div className="press-logo-placeholder">
-                    <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
-                    <span className="press-logo-text">[PLACEHOLDER: Publication Logo 2]</span>
-                  </div>
-                  <div className="press-logo-placeholder">
-                    <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
-                    <span className="press-logo-text">[PLACEHOLDER: Publication Logo 3]</span>
-                  </div>
-                  <div className="press-logo-placeholder">
-                    <Newspaper size={18} style={{ color: 'var(--accent-grey)', marginBottom: '4px' }} />
-                    <span className="press-logo-text">[PLACEHOLDER: Publication Logo 4]</span>
-                  </div>
+                  {PRESS_PUBLICATIONS.map((pub, idx) => (
+                    <div key={idx} className="press-logo-badge">
+                      <Newspaper size={18} className="press-logo-icon" />
+                      <div className="press-logo-title">{pub.name}</div>
+                      {pub.sub && <div className="press-logo-sub">{pub.sub}</div>}
+                    </div>
+                  ))}
                 </div>
 
-                {/* 2 Article Cards */}
+                {/* 6 Real Article Cards Grid */}
                 <div className="press-articles-grid">
-                  <div className="press-article-card">
-                    <div className="press-article-top">
-                      <div className="press-article-icon-badge">
-                        <FileText size={15} />
+                  {PRESS_ARTICLES.map((article, idx) => (
+                    <a
+                      key={idx}
+                      href={article.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="press-article-card"
+                    >
+                      <div className="press-article-top">
+                        <div className="press-article-icon-badge">
+                          <FileText size={15} />
+                        </div>
+                        <div className="press-meta-tag">
+                          {article.source} {article.author ? `• by ${article.author}` : ''}
+                        </div>
                       </div>
-                      <div className="press-meta-tag">[PLACEHOLDER: Print Tech Magazine • Feature Story]</div>
-                    </div>
-                    <h3 className="press-article-title">[PLACEHOLDER: "Advancing Offset UV Coating & Inline Press Efficiencies"]</h3>
-                    <p className="press-article-snippet">
-                      [PLACEHOLDER: Technical spotlight profiling Grafik Machinery International's inline roller coaters and UV curing additions, examining production speed enhancements for Heidelberg and Komori presses.]
-                    </p>
-                    <span className="press-article-link">
-                      [Read Article Placeholder] <ExternalLink size={14} />
-                    </span>
-                  </div>
-
-                  <div className="press-article-card">
-                    <div className="press-article-top">
-                      <div className="press-article-icon-badge">
-                        <FileText size={15} />
+                      <h3 className="press-article-title">{article.title}</h3>
+                      <p className="press-article-snippet">
+                        {article.summary}
+                      </p>
+                      <div className="press-article-link">
+                        Read Full Article <ExternalLink size={14} />
                       </div>
-                      <div className="press-meta-tag">[PLACEHOLDER: Packaging Journal • Industrial Review]</div>
-                    </div>
-                    <h3 className="press-article-title">[PLACEHOLDER: "High-Speed Carton Folder-Gluers Delivering Precision for Indian Converters"]</h3>
-                    <p className="press-article-snippet">
-                      [PLACEHOLDER: Industry overview highlighting robust lock-bottom carton pasting equipment designed for multi-shift manufacturing reliability in competitive packaging sectors.]
-                    </p>
-                    <span className="press-article-link">
-                      [Read Article Placeholder] <ExternalLink size={14} />
-                    </span>
-                  </div>
+                    </a>
+                  ))}
                 </div>
               </div>
             </section>
