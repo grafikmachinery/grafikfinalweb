@@ -376,9 +376,9 @@ const EXHIBITION_SLIDES = [
 
 // Press & Publications Coverage Data
 const PRESS_PUBLICATIONS = [
-  { name: 'PrintWeek India' },
-  { name: 'PRESSIdeas' },
-  { name: 'Print-Packaging Blog', sub: 'Official Print-Packaging Blog' }
+  { name: 'PrintWeek India', logo: '/logo_printweek.png' },
+  { name: 'PRESSIdeas', logo: '/logo_pressideas.jpg' },
+  { name: 'Print-Packaging Blog', sub: 'Official Print-Packaging Blog', logo: '/logo_printpackaging.jpg' }
 ];
 
 const PRESS_ARTICLES = [
@@ -1040,7 +1040,7 @@ function App() {
                 <div className="press-strip-grid">
                   {PRESS_PUBLICATIONS.map((pub, idx) => (
                     <div key={idx} className="press-logo-badge">
-                      <Newspaper size={18} className="press-logo-icon" />
+                      <img src={pub.logo} alt={pub.name} className="press-logo-img" />
                       <div className="press-logo-title">{pub.name}</div>
                       {pub.sub && <div className="press-logo-sub">{pub.sub}</div>}
                     </div>
@@ -1059,18 +1059,15 @@ function App() {
                     >
                       <div className="press-article-top">
                         <div className="press-article-icon-badge">
-                          <FileText size={15} />
+                          <FileText size={13} />
                         </div>
                         <div className="press-meta-tag">
-                          {article.source} {article.author ? `• by ${article.author}` : ''}
+                          {article.source}
                         </div>
                       </div>
                       <h3 className="press-article-title">{article.title}</h3>
-                      <p className="press-article-snippet">
-                        {article.summary}
-                      </p>
                       <div className="press-article-link">
-                        Read Full Article <ExternalLink size={14} />
+                        Read Article <ExternalLink size={12} />
                       </div>
                     </a>
                   ))}
