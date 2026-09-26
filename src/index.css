@@ -1552,25 +1552,30 @@ p {
 
 /* Press & Publications Section with Enhanced Card Depth */
 .press-logos-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   margin-bottom: 32px;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-items: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .press-logos-row {
-    gap: 32px;
-    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .press-logos-row {
+    gap: 12px;
   }
 }
 
 .press-logo-img {
-  max-height: 64px;
+  width: 70%;
   max-width: 200px;
-  width: auto;
   height: auto;
   object-fit: contain;
   display: block;
