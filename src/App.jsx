@@ -1037,13 +1037,9 @@ function App() {
                 </div>
 
                 {/* Publication Names Strip Badges */}
-                <div className="press-strip-grid">
+                <div className="press-logos-row">
                   {PRESS_PUBLICATIONS.map((pub, idx) => (
-                    <div key={idx} className="press-logo-badge">
-                      <img src={pub.logo} alt={pub.name} className="press-logo-img" />
-                      <div className="press-logo-title">{pub.name}</div>
-                      {pub.sub && <div className="press-logo-sub">{pub.sub}</div>}
-                    </div>
+                    <img key={idx} src={pub.logo} alt={pub.name} className="press-logo-img" />
                   ))}
                 </div>
 
