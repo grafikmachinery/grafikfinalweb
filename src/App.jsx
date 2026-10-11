@@ -1385,14 +1385,14 @@ function App() {
             </div>
 
             {/* Contact page layout */}
-            <section className="section container">
+            <section className="section container" style={{ paddingTop: '48px', paddingBottom: '80px' }}>
               <div className="contact-layout">
                 
                 {/* Contact Form Card */}
                 <div className="contact-form-card">
                   {!formSubmitted ? (
                     <form onSubmit={handleFormSubmit}>
-                      <h3 className="contact-form-title" style={{ textAlign: 'left' }}>Get a Free Quote / Inquiry</h3>
+                      <h3 className="contact-form-title" style={{ textAlign: 'left' }}>Request a Quote</h3>
                       
                       <div className="form-group">
                         <label className="form-label" htmlFor="name">
