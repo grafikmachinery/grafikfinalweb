@@ -457,6 +457,7 @@ function App() {
   });
   const [formErrors, setFormErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Scroll Listener for Frosted Glass Navbar Transition
   useEffect(() => {
@@ -567,7 +568,7 @@ function App() {
     return errors;
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
@@ -575,9 +576,33 @@ function App() {
       return;
     }
 
-    // Success Simulation
-    setFormSubmitted(true);
-    setFormErrors({});
+    setIsSubmitting(true);
+
+    try {
+      await fetch('https://formsubmit.co/ajax/grafikmachinery@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          'Name': formData.name,
+          'Company Name': formData.company,
+          'Phone / Mobile': formData.phone,
+          'Email Address': formData.email,
+          'Message / Requirements': formData.message,
+          '_subject': `New Quote Request / Inquiry from ${formData.name} - ${formData.company}`,
+          '_captcha': 'false',
+          '_template': 'table'
+        })
+      });
+    } catch (err) {
+      console.error('Submission error:', err);
+    } finally {
+      setIsSubmitting(false);
+      setFormSubmitted(true);
+      setFormErrors({});
+    }
   };
 
   const resetContactForm = () => {
@@ -1409,8 +1434,13 @@ function App() {
                         {formErrors.message && <span style={{ color: '#ef4444', fontSize: '0.8rem' }}>{formErrors.message}</span>}
                       </div>
 
-                      <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
-                        Submit Inquiry
+                      <button 
+                        type="submit" 
+                        className="btn btn-primary" 
+                        style={{ width: '100%' }}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? 'Sending Inquiry...' : 'Submit Inquiry'}
                       </button>
                     </form>
                   ) : (
@@ -1420,7 +1450,7 @@ function App() {
                       </div>
                       <h2 className="form-success-title">Inquiry Submitted!</h2>
                       <p className="form-success-text">
-                        Thank you for reaching out to Grafik Machinery International. Our technical division is processing your request.
+                        Thank you for reaching out to Grafik Machinery International. Our technical division has received your request and will follow up shortly.
                       </p>
                       
                       <div className="success-timeline">
@@ -1429,14 +1459,14 @@ function App() {
                             <Check size={12} />
                           </div>
                           <div className="timeline-step-title">Inquiry Received</div>
-                          <p className="timeline-step-desc">Your engineering specs have been successfully logged in our systems.</p>
+                          <p className="timeline-step-desc">Your engineering specs have been successfully logged and sent to our team.</p>
                         </div>
                         <div className="timeline-step active">
                           <div className="timeline-bullet">
                             <Clock size={12} />
                           </div>
                           <div className="timeline-step-title">Technical Review</div>
-                          <p className="timeline-step-desc">Our lead developers are checking your configurations (within 24 business hours).</p>
+                          <p className="timeline-step-desc">Our lead engineers are checking your configurations (within 24 business hours).</p>
                         </div>
                         <div className="timeline-step">
                           <div className="timeline-bullet">
@@ -1473,9 +1503,8 @@ function App() {
                       <li className="info-item">
                         <Phone className="info-item-icon" size={20} />
                         <div className="info-item-text">
-                          <strong>Mobile / Call</strong>
-                          <a href="tel:9811779251">+91 9811779251</a>, <a href="tel:9811088668">+91 9811088668</a>
-                          <span style={{ display: 'block', fontSize: '0.85rem', color: 'var(--neutral-body)', marginTop: '4px' }}>Landline: 011-41802031</span>
+                          <strong>Mobile</strong>
+                          <a href="tel:9811779251">+91 9811779251</a>
                         </div>
                       </li>
                       <li className="info-item">
@@ -1548,7 +1577,7 @@ function App() {
               </li>
               <li>
                 <Phone size={16} />
-                <span>+91 9811779251, +91 9811088668</span>
+                <a href="tel:9811779251" style={{ color: 'inherit', textDecoration: 'none' }}>+91 9811779251</a>
               </li>
               <li>
                 <Mail size={16} />
