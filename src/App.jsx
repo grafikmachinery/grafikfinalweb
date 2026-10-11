@@ -1556,7 +1556,7 @@ function App() {
                       <li className="info-item">
                         <MapPin className="info-item-icon" size={20} />
                         <div className="info-item-text">
-                          <strong>Factory Address</strong>
+                          <strong>Address</strong>
                           F-289, Flatted Factory Complex,<br />
                           Okhla Industrial Area, Phase-III,<br />
                           New Delhi, 110020, Delhi, India
