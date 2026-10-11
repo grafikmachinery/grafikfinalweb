@@ -1370,11 +1370,14 @@ function App() {
                       <h3 className="contact-form-title" style={{ textAlign: 'left' }}>Get a Free Quote / Inquiry</h3>
                       
                       <div className="form-group">
-                        <label className="form-label" htmlFor="name">Name</label>
+                        <label className="form-label" htmlFor="name">
+                          Name <span style={{ color: '#ef4444', fontWeight: 'bold' }}>*</span>
+                        </label>
                         <input 
                           type="text" 
                           id="name" 
                           name="name"
+                          required
                           className="form-control"
                           value={formData.name}
                           onChange={handleInputChange}
@@ -1383,11 +1386,14 @@ function App() {
                       </div>
 
                       <div className="form-group">
-                        <label className="form-label" htmlFor="company">Company Name</label>
+                        <label className="form-label" htmlFor="company">
+                          Company Name <span style={{ color: '#ef4444', fontWeight: 'bold' }}>*</span>
+                        </label>
                         <input 
                           type="text" 
                           id="company" 
                           name="company"
+                          required
                           className="form-control"
                           value={formData.company}
                           onChange={handleInputChange}
@@ -1396,11 +1402,14 @@ function App() {
                       </div>
 
                       <div className="form-group">
-                        <label className="form-label" htmlFor="phone">Phone / Mobile</label>
+                        <label className="form-label" htmlFor="phone">
+                          Phone / Mobile <span style={{ color: '#ef4444', fontWeight: 'bold' }}>*</span>
+                        </label>
                         <input 
-                          type="text" 
+                          type="tel" 
                           id="phone" 
                           name="phone"
+                          required
                           className="form-control"
                           value={formData.phone}
                           onChange={handleInputChange}
@@ -1409,11 +1418,14 @@ function App() {
                       </div>
 
                       <div className="form-group">
-                        <label className="form-label" htmlFor="email">Email Address</label>
+                        <label className="form-label" htmlFor="email">
+                          Email Address <span style={{ color: '#ef4444', fontWeight: 'bold' }}>*</span>
+                        </label>
                         <input 
                           type="email" 
                           id="email" 
                           name="email"
+                          required
                           className="form-control"
                           value={formData.email}
                           onChange={handleInputChange}
@@ -1422,10 +1434,13 @@ function App() {
                       </div>
 
                       <div className="form-group">
-                        <label className="form-label" htmlFor="message">Message / Requirements</label>
+                        <label className="form-label" htmlFor="message">
+                          Message / Requirements <span style={{ color: '#ef4444', fontWeight: 'bold' }}>*</span>
+                        </label>
                         <textarea 
                           id="message" 
                           name="message"
+                          required
                           className="form-control"
                           value={formData.message}
                           onChange={handleInputChange}
