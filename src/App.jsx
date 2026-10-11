@@ -90,6 +90,19 @@ const LinkedinIcon = ({ size = 20, ...props }) => (
   </svg>
 );
 
+const WhatsappIcon = ({ size = 20, ...props }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7.02 8.48 7.02 9.68C7.02 10.88 7.89 12.04 8.01 12.2C8.13 12.37 9.71 14.81 12.14 15.86C14.16 16.73 14.57 16.56 15.02 16.52C15.46 16.47 16.45 15.93 16.65 15.35C16.86 14.77 16.86 14.28 16.79 14.17C16.73 14.07 16.57 14 16.32 13.88C16.07 13.75 14.86 13.16 14.63 13.08C14.41 12.99 14.24 12.95 14.08 13.2C13.91 13.44 13.44 14.02 13.3 14.19C13.15 14.35 13.01 14.37 12.76 14.25C12.51 14.12 11.71 13.86 10.77 13.02C10.03 12.36 9.54 11.55 9.39 11.3C9.25 11.05 9.37 10.92 9.5 10.79C9.61 10.68 9.75 10.5 9.87 10.35C10 10.21 10.04 10.1 10.12 9.94C10.2 9.77 10.16 9.63 10.1 9.51C10.04 9.38 9.56 8.21 9.36 7.72C9.16 7.24 8.96 7.31 8.81 7.3C8.67 7.3 8.53 7.33 8.53 7.33Z" />
+  </svg>
+);
+
 // B2B Specifications Table Icons Mapping
 const getSpecIcon = (lbl) => {
   const label = lbl.toLowerCase();
@@ -747,13 +760,24 @@ function App() {
             <span className="social-side-tooltip">YouTube</span>
           </a>
           <a 
-            href="#" 
-            onClick={(e) => { e.preventDefault(); alert("LinkedIn Profile is Coming Soon!"); }}
+            href="https://www.linkedin.com/in/kanishk-jain-43787236/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
             className="social-side-link"
             aria-label="LinkedIn"
           >
             <LinkedinIcon size={18} />
             <span className="social-side-tooltip">LinkedIn</span>
+          </a>
+          <a 
+            href="https://wa.me/919811779251" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-side-link whatsapp"
+            aria-label="WhatsApp"
+          >
+            <WhatsappIcon size={18} />
+            <span className="social-side-tooltip">WhatsApp</span>
           </a>
         </div>
       )}
@@ -1627,12 +1651,22 @@ function App() {
               <YoutubeIcon size={20} />
             </a>
             <a 
-              href="#" 
-              onClick={(e) => { e.preventDefault(); alert("LinkedIn Profile is Coming Soon!"); }}
+              href="https://www.linkedin.com/in/kanishk-jain-43787236/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
               className="footer-social-link"
               aria-label="LinkedIn"
             >
               <LinkedinIcon size={20} />
+            </a>
+            <a 
+              href="https://wa.me/919811779251" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="footer-social-link"
+              aria-label="WhatsApp"
+            >
+              <WhatsappIcon size={20} />
             </a>
           </div>
         </div>

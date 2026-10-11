@@ -2504,6 +2504,10 @@ textarea.form-control {
   background-color: var(--primary-steel);
 }
 
+.social-side-link.whatsapp:hover {
+  background-color: #25D366;
+}
+
 .social-side-tooltip {
   position: absolute;
   right: 54px;
