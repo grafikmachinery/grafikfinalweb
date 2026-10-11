@@ -728,7 +728,7 @@ p {
 }
 
 .product-card {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.72); /* translucent glass */
   backdrop-filter: blur(20px) saturate(190%);
   -webkit-backdrop-filter: blur(20px) saturate(190%);
   border: 1px solid rgba(255, 255, 255, 0.4); /* light reflective bevel border */
@@ -739,7 +739,7 @@ p {
   display: flex;
   flex-direction: column;
   position: relative;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(255, 255, 255, 0.8) inset;
+  box-shadow: 0 10px 30px -10px rgba(11, 37, 69, 0.07), 0 1px 1px rgba(255, 255, 255, 0.8) inset, 0 1px 3px rgba(11, 37, 69, 0.02); /* ambient shadow + top edge light reflection */
   text-decoration: none;
   text-align: left;
 }
@@ -751,7 +751,7 @@ p {
   left: 0;
   width: 100%;
   height: 4px;
-  background-color: #C9A84C; /* Gold accent — visible on navy bg */
+  background-color: var(--primary-navy);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -760,7 +760,7 @@ p {
 
 .product-card:hover {
   transform: translateY(-5px); /* Precise, subtle lift */
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.35); /* Restrained shadow lift */
+  box-shadow: 0 20px 40px -10px rgba(11, 37, 69, 0.16); /* Restrained shadow lift */
   border-color: var(--border-mid);
 }
 
