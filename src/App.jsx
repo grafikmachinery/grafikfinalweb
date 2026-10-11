@@ -1133,30 +1133,33 @@ function App() {
             </div>
 
             {/* Product Card Grid */}
-            <section className="section container">
-              <div className="product-grid">
-                {PRODUCTS.map(product => {
-                  return (
-                    <div 
-                      key={product.id} 
-                      className="product-card"
-                      onClick={() => navigateTo(`product/${product.id}`)}
-                    >
-                      <div className="product-card-image-box">
-                        <img src={product.image} alt={product.name} className="product-card-img" />
+            <section style={{ backgroundColor: 'var(--primary-navy)', padding: '80px 0' }}>
+              <div className="container">
+                <div className="product-grid">
+                  {PRODUCTS.map(product => {
+                    return (
+                      <div 
+                        key={product.id} 
+                        className="product-card"
+                        onClick={() => navigateTo(`product/${product.id}`)}
+                      >
+                        <div className="product-card-image-box">
+                          <img src={product.image} alt={product.name} className="product-card-img" />
+                        </div>
+                        <div className="product-card-body">
+                          <h3 className="product-card-title">{product.name}</h3>
+                          <p className="product-card-desc">{product.shortDesc}</p>
+                          <span className="product-card-link">
+                            Detailed Specs <ArrowRight size={16} />
+                          </span>
+                        </div>
                       </div>
-                      <div className="product-card-body">
-                        <h3 className="product-card-title">{product.name}</h3>
-                        <p className="product-card-desc">{product.shortDesc}</p>
-                        <span className="product-card-link">
-                          Detailed Specs <ArrowRight size={16} />
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </section>
+
 
             {/* Additional custom range list */}
             <section className="section section-alt">
