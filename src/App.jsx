@@ -1568,11 +1568,21 @@ function App() {
                   {/* Google Map Box */}
                   <div className="map-placeholder-box">
                     <iframe 
-                      title="Grafik Machinery International location at Okhla Flatted Factory Complex"
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.467888796853!2d77.27218671507963!3d28.5256334824602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce151cbe8d12d%3A0xe5cd12cf8f8df4f4!2sFlatted%20Factory%20Complex%2C%20Okhla%20Phase%20III%2C%20Okhla%20Industrial%20Area%2C%20New%20Delhi%2C%20Delhi%20110020!5e0!3m2!1sen!2sin!4v1628172900000!5m2!1sen!2sin"
+                      title="Grafik Machinery International location at F-289 Flatted Factory Complex Okhla Phase III"
+                      src="https://maps.google.com/maps?q=F-289%2C%20Flatted%20Factory%20Complex%2C%20Okhla%20Industrial%20Area%2C%20Phase-III%2C%20New%20Delhi%2C%20110020%2C%20Delhi%2C%20India&t=&z=16&ie=UTF8&iwloc=&output=embed"
                       allowFullScreen="" 
                       loading="lazy"
                     />
+                  </div>
+                  <div style={{ marginTop: '10px', textAlign: 'right' }}>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=F-289,+Flatted+Factory+Complex,+Okhla+Industrial+Area,+Phase-III,+New+Delhi,+110020,+Delhi,+India" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ fontSize: '0.85rem', color: 'var(--primary-steel)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}
+                    >
+                      <MapPin size={14} /> Open in Google Maps / Directions &#8594;
+                    </a>
                   </div>
                 </div>
 
