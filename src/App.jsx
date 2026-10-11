@@ -193,7 +193,8 @@ const HERO_SLIDES = [
   { src: '/hero_slides/hero_slide_2.jpg', alt: 'High-Performance UV Curing Lamps in Operation' },
   { src: '/hero_slides/hero_slide_3.png', alt: 'Modular Multi-Lamp UV Curing Cassette Unit' },
   { src: '/hero_slides/hero_slide_4.jpg', alt: 'High-Efficiency LED UV Printing Dryer System' },
-  { src: '/hero_slides/hero_slide_5.png', alt: 'Multi-Color Offset Printing Press and Roller Mechanism' }
+  { src: '/hero_slides/hero_slide_5.png', alt: 'Multi-Color Offset Printing Press and Roller Mechanism' },
+  { src: '/hero_slides/hero_slide_6.jpg', alt: 'High-Precision Industrial Printing and Coating Machine' }
 ];
 
 // Product Catalog
