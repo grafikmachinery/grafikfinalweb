@@ -353,24 +353,20 @@ const INSTALLATIONS = [
 // Exhibition slideshow data
 const EXHIBITION_SLIDES = [
   {
-    src: '/about_exhibition.jpg',
-    title: 'Grafik Machinery Live Demonstration Booth',
-    event: 'Printpack India · Greater Noida',
+    src: '/exhibition_1.jpg',
+    alt: 'Grafik Machinery International Exhibition Stall - Main Showcase',
   },
   {
-    src: null,
-    title: '[PLACEHOLDER: Exhibition Photo 2]',
-    event: 'All India Printing & Packaging Expo · New Delhi',
+    src: '/exhibition_2.jpg',
+    alt: 'Grafik Machinery International Exhibition Stall - UV LED System & Curing Solutions',
   },
   {
-    src: null,
-    title: '[PLACEHOLDER: Exhibition Photo 3]',
-    event: 'drupa · Düsseldorf, Germany',
+    src: '/exhibition_3.jpg',
+    alt: 'Grafik Machinery International Exhibition Stall - Entrance Canopy & Display',
   },
   {
-    src: null,
-    title: '[PLACEHOLDER: Exhibition Photo 4]',
-    event: 'IPEX · London, UK',
+    src: '/exhibition_4.jpg',
+    alt: 'Grafik Machinery International Exhibition Stall - Machinery Display & Roller Coater',
   },
 ];
 
@@ -923,33 +919,33 @@ function App() {
               </div>
             </section>
 
-            {/* 3. Founder Section (Placeholder) */}
+            {/* 3. Founder Section */}
             <section className="about-section about-section-founder reveal-on-scroll">
               <div className="container">
                 <div className="founder-tribute-card">
                   <div className="section-header-left" style={{ marginBottom: '28px' }}>
-                    <span className="section-eyebrow">Leadership & Legacy</span>
-                    <h2>In Memory of Our Founder</h2>
+                    <span className="section-eyebrow">Leadership & Vision</span>
+                    <h2>Our Founder</h2>
                   </div>
 
                   <div className="founder-grid">
-                    {/* Founder Photo Box Placeholder */}
+                    {/* Founder Photo Box */}
                     <div className="founder-photo-box">
-                      <div className="founder-photo-icon">
-                        <User size={28} />
-                      </div>
-                      <div className="founder-photo-label">[PLACEHOLDER: Founder Photo]</div>
-                      <div className="founder-photo-sub">Portrait photo to be added</div>
+                      <img
+                        src="/founder_vimal_jain.jpg"
+                        alt="Vimal Jain - Founding Director"
+                        className="founder-photo-img"
+                      />
                     </div>
 
-                    {/* Founder Editorial Tribute */}
+                    {/* Founder Editorial Content */}
                     <div className="founder-editorial-content">
                       <Quote size={40} className="founder-quote-icon" />
-                      <h3 className="founder-name">[Founder Name]</h3>
-                      <div className="founder-role">[Founder Title/Years]</div>
+                      <h3 className="founder-name">Vimal Jain</h3>
+                      <div className="founder-role">Founding Director</div>
                       
                       <p className="founder-quote-text">
-                        "[Placeholder: 2-4 sentence founder bio/tribute to be added. Built on a foundation of mechanical integrity, tireless engineering precision, and a customer-first philosophy, our founder charted the vision that has propelled Grafik Machinery International through over three decades of manufacturing excellence.]"
+                        "Built on a foundation of mechanical integrity, tireless engineering precision, and a customer-first philosophy, our founding vision continues to guide Grafik Machinery International. Through more than three decades of manufacturing excellence, we remain committed to empowering printing and packaging businesses with robust machinery designed to endure and innovate."
                       </p>
 
                       <div className="founder-philosophy-badge">
@@ -986,25 +982,18 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Right: Slideshow */}
+                  {/* Right: Slideshow (Clean photo display beside heading, without subtitle overlay) */}
                   <div className="exhibition-slideshow">
                     {EXHIBITION_SLIDES.map((slide, idx) => (
                       <div
                         key={idx}
                         className={`exhibition-slide ${idx === exhibitionSlide ? 'exhibition-slide--active' : ''}`}
                       >
-                        {slide.src ? (
-                          <img src={slide.src} alt={slide.title} className="exhibition-slide-img" />
-                        ) : (
-                          <div className="exhibition-slide-placeholder">
-                            <Camera size={32} className="exhibition-slide-cam" />
-                            <span className="exhibition-slide-placeholder-text">{slide.title}</span>
-                          </div>
-                        )}
-                        <div className="exhibition-slide-overlay">
-                          <div className="exhibition-slide-event">{slide.event}</div>
-                          <div className="exhibition-slide-title">{slide.title}</div>
-                        </div>
+                        <img 
+                          src={slide.src} 
+                          alt={slide.alt} 
+                          className="exhibition-slide-img" 
+                        />
                       </div>
                     ))}
 
