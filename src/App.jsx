@@ -469,38 +469,50 @@ export function getRouteFromPath(initialPath) {
     return {
       page: 'about',
       productId: '',
-      title: 'About Our Company | Grafik Machinery International'
+      title: 'About Our Company - Grafik Machinery International'
     };
   }
   if (pathname === '/products') {
     return {
       page: 'products',
       productId: '',
-      title: 'Our Products Range | Grafik Machinery International'
+      title: 'Products - Grafik Machinery International'
     };
   }
   if (pathname === '/gallery') {
     return {
       page: 'gallery',
       productId: '',
-      title: 'Product & Factory Gallery | Grafik Machinery International'
+      title: 'Product & Factory Gallery - Grafik Machinery International'
     };
   }
   if (pathname === '/contact') {
     return {
       page: 'contact',
       productId: '',
-      title: 'Contact Us | Grafik Machinery International'
+      title: 'Contact Us - Grafik Machinery International'
     };
   }
   if (pathname.startsWith('/product/')) {
     const slug = pathname.replace('/product/', '').replace(/\/+$/, '');
     const product = PRODUCTS.find(p => p.id === slug);
     if (product) {
+      // Per-product SEO titles from the SEO table
+      const PRODUCT_TITLES = {
+        'uv-curing-systems':    'UV Curing Systems 250 to 1000 mm - Grafik Machinery',
+        'led-uv-systems':       'LED UV Curing Systems - Grafik Machinery International',
+        'carton-folding-gluing':'Carton Folding and Gluing Machine - Grafik Machinery',
+        'cache-cover-gluer':    'Cache Cover Folder Gluer Machine - Grafik Machinery',
+        'window-patching':      'Window Patching and Liner Carton Machine - Grafik',
+        'roller-coater':        'Roller Coater for UV and Aqueous Varnish - Grafik',
+        'print-plus-coat':      'Print Plus Coat Coating System - Grafik Machinery',
+        'interdeck-uv':         'Interdeck and End of Press UV Curing - Grafik',
+        'sheet-stacker':        'Automatic Sheet Stacker - Grafik Machinery International',
+      };
       return {
         page: 'product-detail',
         productId: slug,
-        title: `${product.name} | Grafik Machinery International`
+        title: PRODUCT_TITLES[slug] || `${product.name} - Grafik Machinery International`
       };
     }
     return {

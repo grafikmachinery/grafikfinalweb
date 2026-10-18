@@ -51,22 +51,31 @@ async function prerender() {
       );
     }
 
-    // Update meta description
+    // Update meta description — exact text from SEO table
+    const PRODUCT_DESCS = {
+      'uv-curing-systems':    'High-performance ultraviolet curing systems in sizes from 250 mm to 1000 mm for printing and packaging. Contact Grafik Machinery International for details.',
+      'led-uv-systems':       'Eco-friendly, energy-efficient LED UV curing solutions for modern presses, with specifications. Contact Grafik Machinery International for details.',
+      'carton-folding-gluing':'Carton folding and gluing machine equipped with prefold and lock bottom attachments for versatile packaging lines. Contact Grafik Machinery International.',
+      'cache-cover-gluer':    'Specialized folding and pasting machine for passport, cache and folder jackets. Contact Grafik Machinery International for details.',
+      'window-patching':      'High-precision window film patching and liner carton machine for toy, cosmetic and food boxes. Contact Grafik Machinery International for details.',
+      'roller-coater':        'High-speed automated roller coater for UV and aqueous varnish, for full sheet gloss. Contact Grafik Machinery International for details.',
+      'print-plus-coat':      'Inline coating attachment that adds coating capability directly to existing offset presses. Contact Grafik Machinery International for details.',
+      'interdeck-uv':         'Flexible interdeck and end of press UV curing systems for multicolor, high-speed offset setups. Contact Grafik Machinery International for details.',
+      'sheet-stacker':        'High-speed automatic sheet stacker that organizes sheets directly at the end of coating runs. Contact Grafik Machinery International for details.',
+    };
+
     let metaDesc = '';
     if (route === '/about') {
-      metaDesc = 'Grafik Machinery International (founded 1989) — 35+ years of engineering excellence in high-performance printing, UV curing, and carton packaging machinery.';
+      metaDesc = '35+ years of engineering excellence in high-performance printing, UV curing, and carton packaging machinery from Grafik Machinery International, founded in 1989.';
     } else if (route === '/products') {
-      metaDesc = 'Explore our complete catalog of industrial UV curing systems, LED UV dryers, carton folder gluers, roller coaters, and customized machinery.';
+      metaDesc = 'UV curing systems, LED UV systems, carton folding and gluing machines, coaters and more from Grafik Machinery International in Okhla, New Delhi.';
     } else if (route === '/gallery') {
       metaDesc = 'Visual tour and photo gallery of Grafik Machinery International factory floor, machinery assembly lines, and high-performance equipment.';
     } else if (route === '/contact') {
       metaDesc = 'Contact Grafik Machinery International in New Delhi, India. Request quotes, detailed technical specifications, and export details.';
     } else if (route.startsWith('/product/')) {
       const slug = route.replace('/product/', '');
-      const prod = PRODUCTS.find(p => p.id === slug);
-      if (prod) {
-        metaDesc = `${prod.name} — ${prod.shortDesc} Built for high-volume industrial printing and packaging lines.`;
-      }
+      metaDesc = PRODUCT_DESCS[slug] || '';
     }
 
     if (metaDesc) {
