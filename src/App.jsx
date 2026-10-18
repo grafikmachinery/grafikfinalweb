@@ -117,7 +117,7 @@ const getSpecIcon = (lbl) => {
 
 // Trust Stats Animating Component
 function StatCounter({ target, suffix = '', label }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
@@ -198,7 +198,7 @@ const HERO_SLIDES = [
 ];
 
 // Product Catalog
-const PRODUCTS = [
+export const PRODUCTS = [
   {
     id: 'uv-curing-systems',
     name: 'U.V. Curing Systems',
@@ -436,14 +436,97 @@ const PRESS_ARTICLES = [
   }
 ];
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [selectedProductId, setSelectedProductId] = useState('');
+// Route resolution helper (shared between SSR and client)
+export function getRouteFromPath(initialPath) {
+  let pathname = initialPath;
+  if (!pathname && typeof window !== 'undefined') {
+    pathname = window.location.pathname;
+    const hash = window.location.hash || '';
+    if (hash) {
+      if (hash.startsWith('#product/')) {
+        pathname = `/product/${hash.replace('#product/', '').replace(/\/+$/, '')}`;
+      } else {
+        const cleanHash = hash.replace('#', '').replace(/^\/+/, '');
+        if (cleanHash === 'products') pathname = '/products';
+        else if (cleanHash === 'about') pathname = '/about';
+        else if (cleanHash === 'gallery') pathname = '/gallery';
+        else if (cleanHash === 'contact') pathname = '/contact';
+        else if (cleanHash === 'home' || cleanHash === '') pathname = '/';
+      }
+    }
+  }
+
+  pathname = (pathname || '/').replace(/\/+$/, '') || '/';
+
+  if (pathname === '/' || pathname === '/home') {
+    return {
+      page: 'home',
+      productId: '',
+      title: 'Grafik Machinery International | Premium Industrial Printing & Packaging Solutions'
+    };
+  }
+  if (pathname === '/about') {
+    return {
+      page: 'about',
+      productId: '',
+      title: 'About Our Company | Grafik Machinery International'
+    };
+  }
+  if (pathname === '/products') {
+    return {
+      page: 'products',
+      productId: '',
+      title: 'Our Products Range | Grafik Machinery International'
+    };
+  }
+  if (pathname === '/gallery') {
+    return {
+      page: 'gallery',
+      productId: '',
+      title: 'Product & Factory Gallery | Grafik Machinery International'
+    };
+  }
+  if (pathname === '/contact') {
+    return {
+      page: 'contact',
+      productId: '',
+      title: 'Contact Us | Grafik Machinery International'
+    };
+  }
+  if (pathname.startsWith('/product/')) {
+    const slug = pathname.replace('/product/', '').replace(/\/+$/, '');
+    const product = PRODUCTS.find(p => p.id === slug);
+    if (product) {
+      return {
+        page: 'product-detail',
+        productId: slug,
+        title: `${product.name} | Grafik Machinery International`
+      };
+    }
+    return {
+      page: '404',
+      productId: '',
+      title: '404 - Page Not Found | Grafik Machinery International'
+    };
+  }
+  return {
+    page: '404',
+    productId: '',
+    title: '404 - Page Not Found | Grafik Machinery International'
+  };
+}
+
+function App({ initialPath = null }) {
+  const [initialRoute] = useState(() => getRouteFromPath(initialPath));
+  const [currentPage, setCurrentPage] = useState(initialRoute.page);
+  const [selectedProductId, setSelectedProductId] = useState(initialRoute.productId);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [quoteSubject, setQuoteSubject] = useState('');
   const [scrolled, setScrolled] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [exhibitionSlide, setExhibitionSlide] = useState(0);
+  const [isPageTransitioning, setIsPageTransitioning] = useState(false);
+  const [lightbox, setLightbox] = useState({ open: false, src: '', alt: '', index: 0 });
 
   // Auto-rotating Hero Slideshow (5.5s per image)
   useEffect(() => {
@@ -488,38 +571,58 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Hash-based Routing
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash || '#home';
-      setIsMobileMenuOpen(false);
-      window.scrollTo(0, 0);
+  // Real Address Router (Path-based with full backward compatibility for legacy hash URLs)
+  const syncRoute = () => {
+    let pathname = window.location.pathname.replace(/\/+$/, '') || '/';
+    const hash = window.location.hash || '';
 
+    // Backward compatibility: If an old # URL was accessed (e.g. /#products or /#product/led-uv-systems),
+    // extract target path and rewrite URL cleanly via history.replaceState
+    if (hash) {
       if (hash.startsWith('#product/')) {
-        const id = hash.replace('#product/', '');
-        const exists = PRODUCTS.some(p => p.id === id);
-        if (exists) {
-          setSelectedProductId(id);
-          setCurrentPage('product-detail');
-        } else {
-          setCurrentPage('products');
-        }
+        const id = hash.replace('#product/', '').replace(/\/+$/, '');
+        pathname = `/product/${id}`;
+        window.history.replaceState(null, '', pathname);
       } else {
-        const cleanHash = hash.replace('#', '');
-        const validPages = ['home', 'about', 'products', 'gallery', 'contact'];
-        if (validPages.includes(cleanHash)) {
-          setCurrentPage(cleanHash);
-        } else {
-          setCurrentPage('home');
+        const cleanHash = hash.replace('#', '').replace(/^\/+/, '');
+        if (cleanHash === 'products') {
+          pathname = '/products';
+          window.history.replaceState(null, '', pathname);
+        } else if (cleanHash === 'about') {
+          pathname = '/about';
+          window.history.replaceState(null, '', pathname);
+        } else if (cleanHash === 'gallery') {
+          pathname = '/gallery';
+          window.history.replaceState(null, '', pathname);
+        } else if (cleanHash === 'contact') {
+          pathname = '/contact';
+          window.history.replaceState(null, '', pathname);
+        } else if (cleanHash === 'home' || cleanHash === '') {
+          pathname = '/';
+          window.history.replaceState(null, '', pathname);
         }
       }
-    };
+    }
 
+    setIsMobileMenuOpen(false);
+    window.scrollTo(0, 0);
+
+    const route = getRouteFromPath(pathname);
+    setCurrentPage(route.page);
+    setSelectedProductId(route.productId);
+    document.title = route.title;
+  };
+
+  useEffect(() => {
     // Initialize routing on load
-    handleHashChange();
+    syncRoute();
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', syncRoute);
+    window.addEventListener('hashchange', syncRoute);
+    return () => {
+      window.removeEventListener('popstate', syncRoute);
+      window.removeEventListener('hashchange', syncRoute);
+    };
   }, []);
 
   // Intersection Observer for scroll animations
@@ -545,9 +648,52 @@ function App() {
     }
   }, [currentPage]);
 
-  // Navigate utility
-  const navigateTo = (pageHash) => {
-    window.location.hash = pageHash;
+  // Navigate utility with page transition
+  const navigateTo = (targetPath, replace = false) => {
+    let resolved = targetPath;
+    if (resolved === 'home') resolved = '/';
+    else if (!resolved.startsWith('/')) resolved = `/${resolved}`;
+
+    if (window.location.pathname === resolved && !window.location.hash) return;
+
+    setIsPageTransitioning(true);
+    setTimeout(() => {
+      if (replace) {
+        window.history.replaceState(null, '', resolved);
+      } else {
+        window.history.pushState(null, '', resolved);
+      }
+      syncRoute();
+      setIsPageTransitioning(false);
+    }, 280);
+  };
+
+  const handleNavClick = (e, targetPath) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
+      return;
+    }
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    navigateTo(targetPath);
+  };
+
+  // Lightbox helpers
+  const LIGHTBOX_IMAGES = [
+    { src: '/hero.jpg', alt: 'UV Curing and Coating Assembly Floor' },
+    { src: '/carton_gluer.jpg', alt: 'Folder Gluer Automated Feed Conveyor' },
+  ];
+  const openLightbox = (index) => {
+    const img = LIGHTBOX_IMAGES[index];
+    if (img) setLightbox({ open: true, src: img.src, alt: img.alt, index });
+  };
+  const closeLightbox = () => setLightbox(prev => ({ ...prev, open: false }));
+  const lightboxPrev = () => {
+    const newIdx = (lightbox.index - 1 + LIGHTBOX_IMAGES.length) % LIGHTBOX_IMAGES.length;
+    setLightbox({ open: true, ...LIGHTBOX_IMAGES[newIdx], index: newIdx });
+  };
+  const lightboxNext = () => {
+    const newIdx = (lightbox.index + 1) % LIGHTBOX_IMAGES.length;
+    setLightbox({ open: true, ...LIGHTBOX_IMAGES[newIdx], index: newIdx });
   };
 
   // Pre-fill quote message
@@ -635,7 +781,7 @@ function App() {
       {/* Sticky Header & Navbar */}
       <header className={`navbar-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-container">
-          <a href="#home" className="nav-logo-link" onClick={() => navigateTo('home')}>
+          <a href="/" className="nav-logo-link" onClick={(e) => handleNavClick(e, '/')}>
             <img src="/grafik_logo_transparent.png" alt="Grafik Machinery Logo" className="nav-logo-img" />
             <span className="logo-text">GRAFIK MACHINERY INTERNATIONAL</span>
           </a>
@@ -645,33 +791,38 @@ function App() {
             <ul className="nav-links">
               <li>
                 <a 
-                  href="#home" 
+                  href="/" 
                   className={`nav-item-link ${currentPage === 'home' ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, '/')}
                 >Home</a>
               </li>
               <li>
                 <a 
-                  href="#about" 
+                  href="/about" 
                   className={`nav-item-link ${currentPage === 'about' ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, '/about')}
                 >About Us</a>
               </li>
               <li>
                 <a 
-                  href="#products" 
+                  href="/products" 
                   className={`nav-item-link ${currentPage === 'products' || currentPage === 'product-detail' ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, '/products')}
                 >Products</a>
               </li>
               <li>
                 <a 
-                  href="#gallery" 
+                  href="/gallery" 
                   className={`nav-item-link ${currentPage === 'gallery' ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, '/gallery')}
                 >Gallery</a>
               </li>
               <li>
                 <a 
-                  href="#contact" 
+                  href="/contact" 
                   className="btn btn-primary"
                   style={{ marginLeft: '12px', padding: '10px 20px' }}
+                  onClick={(e) => handleNavClick(e, '/contact')}
                 >Contact Us</a>
               </li>
             </ul>
@@ -705,33 +856,38 @@ function App() {
         <ul className="mobile-nav-links">
           <li>
             <a 
-              href="#home" 
+              href="/" 
               className={`mobile-nav-item-link ${currentPage === 'home' ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, '/')}
             >Home</a>
           </li>
           <li>
             <a 
-              href="#about" 
+              href="/about" 
               className={`mobile-nav-item-link ${currentPage === 'about' ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, '/about')}
             >About Us</a>
           </li>
           <li>
             <a 
-              href="#products" 
+              href="/products" 
               className={`mobile-nav-item-link ${currentPage === 'products' || currentPage === 'product-detail' ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, '/products')}
             >Products</a>
           </li>
           <li>
             <a 
-              href="#gallery" 
+              href="/gallery" 
               className={`mobile-nav-item-link ${currentPage === 'gallery' ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, '/gallery')}
             >Gallery</a>
           </li>
           <li style={{ marginTop: '16px' }}>
             <a 
-              href="#contact" 
+              href="/contact" 
               className="btn btn-primary"
               style={{ width: '100%' }}
+              onClick={(e) => handleNavClick(e, '/contact')}
             >Contact Us</a>
           </li>
         </ul>
@@ -784,7 +940,7 @@ function App() {
       )}
 
       {/* Main Pages Content Area */}
-      <main className="main-content-flow">
+      <main className={`main-content-flow page-transition-wrapper${isPageTransitioning ? ' page-transitioning' : ''}`}>
         
         {/* ====================================================
             1. HOME VIEW 
@@ -823,7 +979,7 @@ function App() {
                     </h1>
 
                     <div className="hero-buttons">
-                      <a href="#products" className="btn btn-primary">
+                      <a href="/products" className="btn btn-primary" onClick={(e) => handleNavClick(e, '/products')}>
                         Our Products <ArrowRight size={18} />
                       </a>
                     </div>
@@ -853,7 +1009,7 @@ function App() {
                   <p>
                     We specialize in delivering high-end, cost-effective solutions for ultraviolet curing, inline press coating, and carton pasting. Our continuous R&D ensures every machine satisfies strict international quality standards.
                   </p>
-                  <a href="#about" className="btn btn-text" style={{ paddingLeft: 0, marginTop: '8px' }}>
+                  <a href="/about" className="btn btn-text" style={{ paddingLeft: 0, marginTop: '8px' }} onClick={(e) => handleNavClick(e, '/about')}>
                     Read our full story <ChevronRight size={18} />
                   </a>
                 </div>
@@ -871,7 +1027,7 @@ function App() {
                     <h2>Featured Products</h2>
                     <p style={{ margin: 0 }}>Explore our highly-demanded industrial machinery models.</p>
                   </div>
-                  <a href="#products" className="btn btn-secondary">
+                  <a href="/products" className="btn btn-secondary" onClick={(e) => handleNavClick(e, '/products')}>
                     View All Products
                   </a>
                 </div>
@@ -879,10 +1035,12 @@ function App() {
                 <div className="product-grid">
                   {PRODUCTS.slice(0, 3).map(product => {
                     return (
-                      <div 
+                      <a 
                         key={product.id} 
+                        href={`/product/${product.id}`}
                         className="product-card"
-                        onClick={() => navigateTo(`product/${product.id}`)}
+                        onClick={(e) => handleNavClick(e, `/product/${product.id}`)}
+                        style={{ textDecoration: 'none', color: 'inherit' }}
                       >
                         <div className="product-card-image-box">
                           <img src={product.image} alt={product.name} className="product-card-img" />
@@ -894,7 +1052,7 @@ function App() {
                             Product Details <ArrowRight size={16} />
                           </span>
                         </div>
-                      </div>
+                      </a>
                     );
                   })}
                 </div>
@@ -940,7 +1098,7 @@ function App() {
                     35+ years of engineering excellence in high-performance printing, UV curing, and carton packaging machinery.
                   </p>
                   <div className="page-breadcrumbs" style={{ marginTop: '16px' }}>
-                    <span onClick={() => navigateTo('home')}>Home</span>
+                    <a href="/" onClick={(e) => handleNavClick(e, '/')}>Home</a>
                     <ChevronRight size={14} />
                     <span className="active">About Us</span>
                   </div>
@@ -1124,7 +1282,7 @@ function App() {
                   <span className="section-eyebrow">Our Catalog</span>
                   <h1 className="page-header-title">Our Products</h1>
                   <div className="page-breadcrumbs">
-                    <span onClick={() => navigateTo('home')}>Home</span>
+                    <a href="/" onClick={(e) => handleNavClick(e, '/')}>Home</a>
                     <ChevronRight size={14} />
                     <span className="active">Products Range</span>
                   </div>
@@ -1137,10 +1295,12 @@ function App() {
               <div className="product-grid">
                 {PRODUCTS.map(product => {
                   return (
-                    <div 
+                    <a 
                       key={product.id} 
+                      href={`/product/${product.id}`}
                       className="product-card"
-                      onClick={() => navigateTo(`product/${product.id}`)}
+                      onClick={(e) => handleNavClick(e, `/product/${product.id}`)}
+                      style={{ textDecoration: 'none', color: 'inherit' }}
                     >
                       <div className="product-card-image-box">
                         <img src={product.image} alt={product.name} className="product-card-img" />
@@ -1152,7 +1312,7 @@ function App() {
                           Detailed Specs <ArrowRight size={16} />
                         </span>
                       </div>
-                    </div>
+                    </a>
                   );
                 })}
               </div>
@@ -1192,7 +1352,7 @@ function App() {
 
                 <div className="text-center" style={{ marginTop: '40px' }}>
                   <p style={{ marginBottom: '20px', fontWeight: '500' }}>Have unique manufacturing specs or need a turnkey solution?</p>
-                  <a href="#contact" className="btn btn-primary">
+                  <a href="/contact" className="btn btn-primary" onClick={(e) => handleNavClick(e, '/contact')}>
                     Request Custom Engineering <MessageSquare size={18} />
                   </a>
                 </div>
@@ -1215,9 +1375,9 @@ function App() {
                   {/* Header breadcrumbs */}
                   <div className="page-header-strip" style={{ background: 'transparent', padding: '32px 0 0 0', borderBottom: 'none' }}>
                     <div className="page-breadcrumbs">
-                      <span onClick={() => navigateTo('home')}>Home</span>
+                      <a href="/" onClick={(e) => handleNavClick(e, '/')}>Home</a>
                       <ChevronRight size={14} />
-                      <span onClick={() => navigateTo('products')}>Products</span>
+                      <a href="/products" onClick={(e) => handleNavClick(e, '/products')}>Products</a>
                       <ChevronRight size={14} />
                       <span className="active">{product.name}</span>
                     </div>
@@ -1275,13 +1435,18 @@ function App() {
 
                       {/* CTAs */}
                       <div style={{ marginTop: '12px' }}>
-                        <button 
+                        <a 
+                          href="/contact"
                           className="btn btn-primary"
-                          onClick={() => triggerQuoteRequest(product.name)}
-                          style={{ width: '100%' }}
+                          onClick={(e) => {
+                            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                            e.preventDefault();
+                            triggerQuoteRequest(product.name);
+                          }}
+                          style={{ width: '100%', textAlign: 'center', display: 'block' }}
                         >
                           Request Price Quote
-                        </button>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -1303,7 +1468,7 @@ function App() {
                   <span className="section-eyebrow">Visual Tour</span>
                   <h1 className="page-header-title">Product & Factory Gallery</h1>
                   <div className="page-breadcrumbs">
-                    <span onClick={() => navigateTo('home')}>Home</span>
+                    <a href="/" onClick={(e) => handleNavClick(e, '/')}>Home</a>
                     <ChevronRight size={14} />
                     <span className="active">Gallery</span>
                   </div>
@@ -1314,16 +1479,18 @@ function App() {
             {/* Gallery Grid */}
             <section className="section container">
               <div className="gallery-grid">
-                <div className="gallery-item">
+                <div className="gallery-item lightbox-trigger" onClick={() => openLightbox(0)}>
                   <div className="gallery-img-wrapper">
                     <img src="/hero.jpg" alt="UV Curing Assembly Showcase" className="gallery-img" />
+                    <div className="gallery-zoom-icon">🔍</div>
                   </div>
                   <div className="gallery-caption">UV Curing and Coating Assembly Floor</div>
                 </div>
 
-                <div className="gallery-item">
+                <div className="gallery-item lightbox-trigger" onClick={() => openLightbox(1)}>
                   <div className="gallery-img-wrapper">
                     <img src="/carton_gluer.jpg" alt="Carton Folder Gluer Machine" className="gallery-img" />
+                    <div className="gallery-zoom-icon">🔍</div>
                   </div>
                   <div className="gallery-caption">Folder Gluer Automated Feed Conveyor</div>
                 </div>
@@ -1377,7 +1544,7 @@ function App() {
                   <span className="section-eyebrow">Inquiries & Quotes</span>
                   <h1 className="page-header-title">Contact Us</h1>
                   <div className="page-breadcrumbs">
-                    <span onClick={() => navigateTo('home')}>Home</span>
+                    <a href="/" onClick={(e) => handleNavClick(e, '/')}>Home</a>
                     <ChevronRight size={14} />
                     <span className="active">Contact</span>
                   </div>
@@ -1593,6 +1760,51 @@ function App() {
           </div>
         )}
 
+        {/* ====================================================
+            7. 404 NOT FOUND VIEW
+            ==================================================== */}
+        {currentPage === '404' && (
+          <div className="animate-fade-in">
+            {/* Header strip */}
+            <div className="page-header-strip">
+              <div className="container">
+                <div className="section-header-left" style={{ marginBottom: 0 }}>
+                  <span className="section-eyebrow">Error 404</span>
+                  <h1 className="page-header-title">Page Not Found</h1>
+                  <div className="page-breadcrumbs">
+                    <a href="/" onClick={(e) => handleNavClick(e, '/')}>Home</a>
+                    <ChevronRight size={14} />
+                    <span className="active">404</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 404 Content */}
+            <section className="section container" style={{ textAlign: 'center', padding: '80px 20px' }}>
+              <div style={{ maxWidth: '620px', margin: '0 auto' }}>
+                <div style={{ fontSize: '5.5rem', fontWeight: '800', color: 'var(--primary-navy)', lineHeight: 1, marginBottom: '20px', letterSpacing: '-0.03em' }}>
+                  404
+                </div>
+                <h2 style={{ fontSize: '1.75rem', marginBottom: '16px', color: 'var(--primary-navy)' }}>
+                  The page you are looking for does not exist
+                </h2>
+                <p style={{ color: 'var(--neutral-body)', marginBottom: '36px', fontSize: '1.05rem', lineHeight: '1.6' }}>
+                  The web address may have been entered incorrectly, or the page has moved. Please return to our homepage or explore our machinery catalog.
+                </p>
+                <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                  <a href="/" className="btn btn-primary" onClick={(e) => handleNavClick(e, '/')}>
+                    Return to Homepage
+                  </a>
+                  <a href="/products" className="btn btn-secondary" onClick={(e) => handleNavClick(e, '/products')}>
+                    Browse Products Catalog
+                  </a>
+                </div>
+              </div>
+            </section>
+          </div>
+        )}
+
       </main>
 
       {/* Footer Area */}
@@ -1611,11 +1823,11 @@ function App() {
           <div className="footer-links">
             <h4 className="footer-links-title">Quick Links</h4>
             <ul className="footer-links-list">
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#products">Products Range</a></li>
-              <li><a href="#gallery">Photo Gallery</a></li>
-              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="/" onClick={(e) => handleNavClick(e, '/')}>Home</a></li>
+              <li><a href="/about" onClick={(e) => handleNavClick(e, '/about')}>About Us</a></li>
+              <li><a href="/products" onClick={(e) => handleNavClick(e, '/products')}>Products Range</a></li>
+              <li><a href="/gallery" onClick={(e) => handleNavClick(e, '/gallery')}>Photo Gallery</a></li>
+              <li><a href="/contact" onClick={(e) => handleNavClick(e, '/contact')}>Contact Us</a></li>
             </ul>
           </div>
 
@@ -1683,6 +1895,27 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* ── Lightbox Modal ── */}
+      {lightbox.open && (
+        <div
+          className="lightbox-overlay"
+          onClick={closeLightbox}
+          onKeyDown={(e) => e.key === 'Escape' && closeLightbox()}
+          tabIndex={0}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image viewer"
+        >
+          <button className="lightbox-close" onClick={closeLightbox} aria-label="Close">&times;</button>
+          <button className="lightbox-nav lightbox-prev" onClick={(e) => { e.stopPropagation(); lightboxPrev(); }} aria-label="Previous">&#8249;</button>
+          <div className="lightbox-img-wrap" onClick={(e) => e.stopPropagation()}>
+            <img src={lightbox.src} alt={lightbox.alt} className="lightbox-img" />
+            <div className="lightbox-caption">{lightbox.alt}</div>
+          </div>
+          <button className="lightbox-nav lightbox-next" onClick={(e) => { e.stopPropagation(); lightboxNext(); }} aria-label="Next">&#8250;</button>
+        </div>
+      )}
     </div>
   );
 }

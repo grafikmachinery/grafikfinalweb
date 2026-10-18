@@ -1,40 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage -->
   <url>
     <loc>https://www.grafikmachinery.in/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://www.grafikmachinery.in/product_uv_curing.jpg</image:loc>
-      <image:title>U.V. Curing Systems</image:title>
-      <image:caption>Grafik Tech high-performance ultraviolet curing systems for printing and packaging</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.grafikmachinery.in/product_led_uv.jpg</image:loc>
-      <image:title>LED UV Systems</image:title>
-      <image:caption>Energy-efficient LED UV curing solutions with 20,000+ operating hours</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.grafikmachinery.in/product_carton_gluer.jpg</image:loc>
-      <image:title>Carton Folding and Gluing Machine</image:title>
-      <image:caption>High-speed carton pasting and folding machine with lock bottom attachments</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.grafikmachinery.in/carton_gluer.jpg</image:loc>
-      <image:title>Window Patching and Liner Carton Machine</image:title>
-      <image:caption>High-precision window film patching for food, toy, and cosmetic boxes</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.grafikmachinery.in/product_folder_gluer.jpg</image:loc>
-      <image:title>Automatic Folder Gluer</image:title>
-      <image:caption>Precision industrial carton folding and gluing equipment</image:caption>
-    </image:image>
+  </url>
+
+  <!-- About Us -->
+  <url>
+    <loc>https://www.grafikmachinery.in/about</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>https://www.grafikmachinery.in/about_exhibition.jpg</image:loc>
       <image:title>Grafik Machinery International Exhibition</image:title>
       <image:caption>Grafik Machinery International showcase and industrial machinery booth</image:caption>
     </image:image>
+  </url>
+
+  <!-- Products Catalog -->
+  <url>
+    <loc>https://www.grafikmachinery.in/products</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Product: U.V. Curing Systems -->
+  <url>
+    <loc>https://www.grafikmachinery.in/product/uv-curing-systems</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/product_uv_curing.jpg</image:loc>
+      <image:title>U.V. Curing Systems</image:title>
+      <image:caption>Grafik Tech high-performance ultraviolet curing systems for printing and packaging</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product: LED UV Systems -->
+  <url>
+    <loc>https://www.grafikmachinery.in/product/led-uv-systems</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/product_led_uv.jpg</image:loc>
+      <image:title>LED UV Systems</image:title>
+      <image:caption>Energy-efficient LED UV curing solutions with 20,000+ operating hours</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product: Carton Folding and Gluing Machine -->
+  <url>
+    <loc>https://www.grafikmachinery.in/product/carton-folding-gluing</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/product_carton_gluer.jpg</image:loc>
+      <image:title>Carton Folding and Gluing Machine</image:title>
+      <image:caption>High-speed carton pasting and folding machine with lock bottom attachments</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product: Window Patching and Liner Carton Machine -->
+  <url>
+    <loc>https://www.grafikmachinery.in/product/window-patching</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/carton_gluer.jpg</image:loc>
+      <image:title>Window Patching and Liner Carton Machine</image:title>
+      <image:caption>High-precision window film patching for food, toy, and cosmetic boxes</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product: Roller Coater for UV and Aqueous Varnish -->
+  <url>
+    <loc>https://www.grafikmachinery.in/product/roller-coater</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/hero.jpg</image:loc>
+      <image:title>Roller Coater for UV and Aqueous Varnish</image:title>
+      <image:caption>High-speed automated varnishing and coating machines for full sheet gloss</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product: Cache Cover Folder Gluer Machine -->
+  <url>
+    <loc>https://www.grafikmachinery.in/product/cache-cover-gluer</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/product_folder_gluer.jpg</image:loc>
+      <image:title>Cache Cover Folder Gluer Machine</image:title>
+      <image:caption>Specialized folding and pasting device for passport, cache, and folder jackets</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product: Automatic Sheet Stacker -->
+  <url>
+    <loc>https://www.grafikmachinery.in/product/sheet-stacker</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/hero.jpg</image:loc>
+      <image:title>Automatic Sheet Stacker</image:title>
+      <image:caption>High-speed stacker to organize sheets directly at the end of coating runs</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product: Print Plus Coat – Coating System -->
+  <url>
+    <loc>https://www.grafikmachinery.in/product/print-plus-coat</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/hero.jpg</image:loc>
+      <image:title>Print Plus Coat – Coating System</image:title>
+      <image:caption>Inline coating attachment to add coating capability directly to existing offset presses</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product: Interdeck/End of Press UV Curing System -->
+  <url>
+    <loc>https://www.grafikmachinery.in/product/interdeck-uv</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.grafikmachinery.in/hero.jpg</image:loc>
+      <image:title>Interdeck/End of Press UV Curing System</image:title>
+      <image:caption>Flexible interdeck drying systems for multicolor high-speed offset setups</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Photo Gallery -->
+  <url>
+    <loc>https://www.grafikmachinery.in/gallery</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact Us -->
+  <url>
+    <loc>https://www.grafikmachinery.in/contact</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
