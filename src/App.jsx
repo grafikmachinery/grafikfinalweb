@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { 
   Sun, 
   Cpu, 
   Layers, 
   Maximize, 
+  Maximize2,
   Wind, 
   BookOpen, 
   Download, 
@@ -19,6 +20,7 @@ import {
   Menu, 
   X, 
   ChevronRight, 
+  ChevronLeft,
   FileText, 
   ArrowRight, 
   ExternalLink, 
@@ -34,6 +36,8 @@ import {
   Newspaper,
   Factory
 } from 'lucide-react';
+import { GALLERY_PHOTOS } from './galleryData.js';
+export { GALLERY_PHOTOS };
 
 // Custom Social SVG Icon Components (Lucide brand icons fallback)
 const FacebookIcon = ({ size = 20, ...props }) => (
@@ -528,6 +532,46 @@ export function getRouteFromPath(initialPath) {
   };
 }
 
+// Gallery photo item with progressive lazy-load fade-in
+function GalleryPhotoItem({ photo, index, onOpen }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div
+      className="masonry-item"
+      onClick={() => onOpen(index)}
+      role="button"
+      tabIndex={0}
+      aria-label={`View photo: ${photo.alt}`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onOpen(index);
+        }
+      }}
+    >
+      <img
+        src={photo.src}
+        alt={photo.alt}
+        loading="lazy"
+        decoding="async"
+        className={`masonry-img ${loaded ? 'is-loaded' : ''}`}
+        onLoad={() => setLoaded(true)}
+        ref={(el) => {
+          if (el && el.complete && !loaded) {
+            setLoaded(true);
+          }
+        }}
+      />
+      <div className="masonry-overlay" aria-hidden="true">
+        <div className="masonry-expand-icon">
+          <Maximize2 size={20} strokeWidth={2.2} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function App({ initialPath = null }) {
   const [initialRoute] = useState(() => getRouteFromPath(initialPath));
   const [currentPage, setCurrentPage] = useState(initialRoute.page);
@@ -538,7 +582,7 @@ function App({ initialPath = null }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [exhibitionSlide, setExhibitionSlide] = useState(0);
   const [isPageTransitioning, setIsPageTransitioning] = useState(false);
-  const [lightbox, setLightbox] = useState({ open: false, src: '', alt: '', index: 0 });
+  const [lightbox, setLightbox] = useState({ open: false, index: 0 });
 
   // Auto-rotating Hero Slideshow (5.5s per image)
   useEffect(() => {
@@ -690,22 +734,58 @@ function App({ initialPath = null }) {
   };
 
   // Lightbox helpers
-  const LIGHTBOX_IMAGES = [
-    { src: '/hero.jpg', alt: 'UV Curing and Coating Assembly Floor' },
-    { src: '/carton_gluer.jpg', alt: 'Folder Gluer Automated Feed Conveyor' },
-  ];
   const openLightbox = (index) => {
-    const img = LIGHTBOX_IMAGES[index];
-    if (img) setLightbox({ open: true, src: img.src, alt: img.alt, index });
+    setLightbox({ open: true, index });
   };
   const closeLightbox = () => setLightbox(prev => ({ ...prev, open: false }));
   const lightboxPrev = () => {
-    const newIdx = (lightbox.index - 1 + LIGHTBOX_IMAGES.length) % LIGHTBOX_IMAGES.length;
-    setLightbox({ open: true, ...LIGHTBOX_IMAGES[newIdx], index: newIdx });
+    setLightbox(prev => ({
+      open: true,
+      index: (prev.index - 1 + GALLERY_PHOTOS.length) % GALLERY_PHOTOS.length,
+    }));
   };
   const lightboxNext = () => {
-    const newIdx = (lightbox.index + 1) % LIGHTBOX_IMAGES.length;
-    setLightbox({ open: true, ...LIGHTBOX_IMAGES[newIdx], index: newIdx });
+    setLightbox(prev => ({
+      open: true,
+      index: (prev.index + 1) % GALLERY_PHOTOS.length,
+    }));
+  };
+
+  // Keyboard navigation & body scroll lock for lightbox
+  useEffect(() => {
+    if (!lightbox.open) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') lightboxPrev();
+      else if (e.key === 'ArrowRight') lightboxNext();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [lightbox.open]);
+
+  // Touch swipe handling for mobile lightbox
+  const touchStartXRef = useRef(0);
+  const touchStartYRef = useRef(0);
+  const handleTouchStart = (e) => {
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+  };
+  const handleTouchEnd = (e) => {
+    const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+    const deltaY = e.changedTouches[0].clientY - touchStartYRef.current;
+    if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX > 0) {
+        lightboxPrev();
+      } else {
+        lightboxNext();
+      }
+    }
   };
 
   // Pre-fill quote message
@@ -1479,7 +1559,10 @@ function App({ initialPath = null }) {
                 <div className="section-header-left" style={{ marginBottom: 0 }}>
                   <span className="section-eyebrow">Visual Tour</span>
                   <h1 className="page-header-title">Product & Factory Gallery</h1>
-                  <div className="page-breadcrumbs">
+                  <p className="page-header-lead">
+                    A look at our machinery, our factory, and our work in the field.
+                  </p>
+                  <div className="page-breadcrumbs" style={{ marginTop: '16px' }}>
                     <a href="/" onClick={(e) => handleNavClick(e, '/')}>Home</a>
                     <ChevronRight size={14} />
                     <span className="active">Gallery</span>
@@ -1488,57 +1571,31 @@ function App({ initialPath = null }) {
               </div>
             </div>
 
-            {/* Gallery Grid */}
+            {/* Borderless Masonry Grid */}
             <section className="section container">
-              <div className="gallery-grid">
-                <div className="gallery-item lightbox-trigger" onClick={() => openLightbox(0)}>
-                  <div className="gallery-img-wrapper">
-                    <img src="/hero.jpg" alt="UV Curing Assembly Showcase" className="gallery-img" />
-                    <div className="gallery-zoom-icon">🔍</div>
-                  </div>
-                  <div className="gallery-caption">UV Curing and Coating Assembly Floor</div>
-                </div>
+              <div className="masonry-gallery">
+                {GALLERY_PHOTOS.map((photo, index) => (
+                  <GalleryPhotoItem
+                    key={photo.src}
+                    photo={photo}
+                    index={index}
+                    onOpen={openLightbox}
+                  />
+                ))}
+              </div>
+            </section>
 
-                <div className="gallery-item lightbox-trigger" onClick={() => openLightbox(1)}>
-                  <div className="gallery-img-wrapper">
-                    <img src="/carton_gluer.jpg" alt="Carton Folder Gluer Machine" className="gallery-img" />
-                    <div className="gallery-zoom-icon">🔍</div>
-                  </div>
-                  <div className="gallery-caption">Folder Gluer Automated Feed Conveyor</div>
-                </div>
-
-                {/* Polished Coming Soon placeholders */}
-                <div className="gallery-item">
-                  <div className="gallery-placeholder-tile">
-                    <Camera size={32} />
-                    <span className="gallery-placeholder-tile-text">Photo Coming Soon</span>
-                  </div>
-                  <div className="gallery-caption">Factory Quality Control Unit</div>
-                </div>
-
-                <div className="gallery-item">
-                  <div className="gallery-placeholder-tile">
-                    <Camera size={32} />
-                    <span className="gallery-placeholder-tile-text">Photo Coming Soon</span>
-                  </div>
-                  <div className="gallery-caption">Export Packaging & Dispatch Area</div>
-                </div>
-
-                <div className="gallery-item">
-                  <div className="gallery-placeholder-tile">
-                    <Camera size={32} />
-                    <span className="gallery-placeholder-tile-text">Photo Coming Soon</span>
-                  </div>
-                  <div className="gallery-caption">In-house Research & Development Lab</div>
-                </div>
-
-                <div className="gallery-item">
-                  <div className="gallery-placeholder-tile">
-                    <Camera size={32} />
-                    <span className="gallery-placeholder-tile-text">Photo Coming Soon</span>
-                  </div>
-                  <div className="gallery-caption">Engineering Assembly Line</div>
-                </div>
+            {/* Slim Call-to-Action Band */}
+            <section className="gallery-cta-band">
+              <div className="container gallery-cta-container">
+                <p className="gallery-cta-text">Want to see a machine in action?</p>
+                <a
+                  href="/contact"
+                  className="btn btn-primary"
+                  onClick={(e) => handleNavClick(e, '/contact')}
+                >
+                  Contact Us <ArrowRight size={18} />
+                </a>
               </div>
             </section>
           </div>
@@ -1908,24 +1965,66 @@ function App({ initialPath = null }) {
         </div>
       </footer>
 
-      {/* ── Lightbox Modal ── */}
-      {lightbox.open && (
+      {/* ── Fullscreen Lightbox Modal ── */}
+      {lightbox.open && GALLERY_PHOTOS[lightbox.index] && (
         <div
-          className="lightbox-overlay"
+          className="gallery-lightbox"
           onClick={closeLightbox}
-          onKeyDown={(e) => e.key === 'Escape' && closeLightbox()}
-          tabIndex={0}
           role="dialog"
           aria-modal="true"
           aria-label="Image viewer"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
-          <button className="lightbox-close" onClick={closeLightbox} aria-label="Close">&times;</button>
-          <button className="lightbox-nav lightbox-prev" onClick={(e) => { e.stopPropagation(); lightboxPrev(); }} aria-label="Previous">&#8249;</button>
-          <div className="lightbox-img-wrap" onClick={(e) => e.stopPropagation()}>
-            <img src={lightbox.src} alt={lightbox.alt} className="lightbox-img" />
-            <div className="lightbox-caption">{lightbox.alt}</div>
+          {/* Top bar controls */}
+          <div className="lightbox-top-bar" onClick={(e) => e.stopPropagation()}>
+            <div className="lightbox-counter" aria-live="polite">
+              {lightbox.index + 1} / {GALLERY_PHOTOS.length}
+            </div>
+            <button
+              type="button"
+              className="lightbox-close-btn"
+              onClick={closeLightbox}
+              aria-label="Close image viewer"
+            >
+              <X size={22} />
+            </button>
           </div>
-          <button className="lightbox-nav lightbox-next" onClick={(e) => { e.stopPropagation(); lightboxNext(); }} aria-label="Next">&#8250;</button>
+
+          {/* Previous Arrow */}
+          <button
+            type="button"
+            className="lightbox-arrow lightbox-arrow-prev"
+            onClick={(e) => {
+              e.stopPropagation();
+              lightboxPrev();
+            }}
+            aria-label="Previous photo"
+          >
+            <ChevronLeft size={30} />
+          </button>
+
+          {/* Full-res Photo Container */}
+          <div className="lightbox-stage" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={GALLERY_PHOTOS[lightbox.index].src}
+              alt={GALLERY_PHOTOS[lightbox.index].alt}
+              className="lightbox-active-img"
+            />
+          </div>
+
+          {/* Next Arrow */}
+          <button
+            type="button"
+            className="lightbox-arrow lightbox-arrow-next"
+            onClick={(e) => {
+              e.stopPropagation();
+              lightboxNext();
+            }}
+            aria-label="Next photo"
+          >
+            <ChevronRight size={30} />
+          </button>
         </div>
       )}
     </div>
