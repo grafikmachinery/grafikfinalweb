@@ -992,7 +992,7 @@ function App({ initialPath = null }) {
             href="https://www.facebook.com/Grafikmachinery" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="social-side-link"
+            className="social-side-link facebook"
             aria-label="Facebook"
           >
             <FacebookIcon size={18} />
@@ -1002,7 +1002,7 @@ function App({ initialPath = null }) {
             href="https://www.youtube.com/@grafikmachinery" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="social-side-link"
+            className="social-side-link youtube"
             aria-label="YouTube"
           >
             <YoutubeIcon size={18} />
@@ -1012,7 +1012,7 @@ function App({ initialPath = null }) {
             href="https://www.linkedin.com/in/kanishk-jain-43787236/" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="social-side-link"
+            className="social-side-link linkedin"
             aria-label="LinkedIn"
           >
             <LinkedinIcon size={18} />
@@ -1929,7 +1929,7 @@ function App({ initialPath = null }) {
               href="https://www.facebook.com/Grafikmachinery" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="footer-social-link"
+              className="footer-social-link facebook"
               aria-label="Facebook"
             >
               <FacebookIcon size={20} />
@@ -1938,7 +1938,7 @@ function App({ initialPath = null }) {
               href="https://www.youtube.com/@grafikmachinery" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="footer-social-link"
+              className="footer-social-link youtube"
               aria-label="YouTube"
             >
               <YoutubeIcon size={20} />
@@ -1947,7 +1947,7 @@ function App({ initialPath = null }) {
               href="https://www.linkedin.com/in/kanishk-jain-43787236/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="footer-social-link"
+              className="footer-social-link linkedin"
               aria-label="LinkedIn"
             >
               <LinkedinIcon size={20} />
@@ -1956,7 +1956,7 @@ function App({ initialPath = null }) {
               href="https://wa.me/919811779251" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="footer-social-link"
+              className="footer-social-link whatsapp"
               aria-label="WhatsApp"
             >
               <WhatsappIcon size={20} />

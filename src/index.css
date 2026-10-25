@@ -2290,11 +2290,31 @@ textarea.form-control {
 
 .footer-social-link {
   color: rgba(255, 255, 255, 0.7);
-  transition: var(--transition-fast);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-social-link:hover {
+  transform: translateY(-2px);
   color: var(--neutral-white);
+}
+
+.footer-social-link.facebook:hover {
+  color: #1877F2;
+}
+
+.footer-social-link.youtube:hover {
+  color: #FF0000;
+}
+
+.footer-social-link.linkedin:hover {
+  color: #0A66C2;
+}
+
+.footer-social-link.whatsapp:hover {
+  color: #25D366;
 }
 
 @media (max-width: 600px) {
@@ -2553,6 +2573,18 @@ textarea.form-control {
   background-color: var(--primary-steel);
 }
 
+.social-side-link.facebook:hover {
+  background-color: #1877F2;
+}
+
+.social-side-link.youtube:hover {
+  background-color: #FF0000;
+}
+
+.social-side-link.linkedin:hover {
+  background-color: #0A66C2;
+}
+
 .social-side-link.whatsapp:hover {
   background-color: #25D366;
 }
@@ -2569,7 +2601,7 @@ textarea.form-control {
   opacity: 0;
   visibility: hidden;
   white-space: nowrap;
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  transition: opacity var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
   transform: translateX(10px);
   box-shadow: var(--shadow-sm);
   pointer-events: none;
@@ -2579,6 +2611,22 @@ textarea.form-control {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
+}
+
+.social-side-link.facebook:hover .social-side-tooltip {
+  background-color: #1877F2;
+}
+
+.social-side-link.youtube:hover .social-side-tooltip {
+  background-color: #FF0000;
+}
+
+.social-side-link.linkedin:hover .social-side-tooltip {
+  background-color: #0A66C2;
+}
+
+.social-side-link.whatsapp:hover .social-side-tooltip {
+  background-color: #25D366;
 }
 
 @media (max-width: 1024px) {
