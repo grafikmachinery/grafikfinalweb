@@ -487,7 +487,7 @@ export function getRouteFromPath(initialPath) {
     return {
       page: 'gallery',
       productId: '',
-      title: 'Product & Factory Gallery - Grafik Machinery International'
+      title: 'Gallery - Grafik Machinery International'
     };
   }
   if (pathname === '/contact') {
@@ -1558,11 +1558,8 @@ function App({ initialPath = null }) {
               <div className="container">
                 <div className="section-header-left" style={{ marginBottom: 0 }}>
                   <span className="section-eyebrow">Visual Tour</span>
-                  <h1 className="page-header-title">Product & Factory Gallery</h1>
-                  <p className="page-header-lead">
-                    A look at our machinery, our factory, and our work in the field.
-                  </p>
-                  <div className="page-breadcrumbs" style={{ marginTop: '16px' }}>
+                  <h1 className="page-header-title">Gallery</h1>
+                  <div className="page-breadcrumbs">
                     <a href="/" onClick={(e) => handleNavClick(e, '/')}>Home</a>
                     <ChevronRight size={14} />
                     <span className="active">Gallery</span>

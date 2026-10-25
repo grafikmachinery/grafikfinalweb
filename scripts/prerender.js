@@ -90,7 +90,7 @@ const PAGE_META = {
     type:  'website',
   },
   '/gallery': {
-    title: 'Product & Factory Gallery - Grafik Machinery International',
+    title: 'Gallery - Grafik Machinery International',
     desc:  'Visual tour and photo gallery of Grafik Machinery International factory floor, machinery assembly lines, and high-performance equipment.',
     image: `${BASE_URL}/hero.jpg`,
     type:  'website',
