@@ -1572,7 +1572,7 @@ function App({ initialPath = null }) {
             </div>
 
             {/* Borderless Masonry Grid */}
-            <section className="section container">
+            <section className="section container" style={{ paddingTop: '48px', paddingBottom: '72px' }}>
               <div className="masonry-gallery">
                 {GALLERY_PHOTOS.map((photo, index) => (
                   <GalleryPhotoItem

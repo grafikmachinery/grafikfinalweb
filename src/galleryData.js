@@ -16,6 +16,10 @@ export const GALLERY_PHOTOS = [
     alt: 'Multicolor offset press line with Printing Quality Control units and ink rollers on the factory floor',
   },
   {
+    src: '/gallery/high-intensity-uv-lamp-curing-cylinder.jpg',
+    alt: 'High-intensity UV curing lamp glowing inside opened press cylinder enclosure',
+  },
+  {
     src: '/gallery/offset-printing-press-roller-assembly.jpg',
     alt: 'Offset printing press roller assembly and pneumatic system',
   },
@@ -28,12 +32,20 @@ export const GALLERY_PHOTOS = [
     alt: 'Grafik Machinery International UV curing conveyor system with control console and label printing press',
   },
   {
+    src: '/gallery/inline-uv-curing-lamps-exhaust-ducting.jpg',
+    alt: 'UV curing lamp module glowing inside printing press with exhaust ducting',
+  },
+  {
     src: '/gallery/press-roller-coating-unit-electric-drive.jpg',
     alt: 'Press roller coating unit with electric drive motor and precision pneumatic system',
   },
   {
     src: '/gallery/industrial-printing-coating-machine-console.jpg',
     alt: 'Industrial printing and coating machine with operator control console and tool station',
+  },
+  {
+    src: '/gallery/interdeck-uv-cassette-housing-installation.jpg',
+    alt: 'Interdeck UV cassette housings and cabling assembly on offset press base',
   },
   {
     src: '/gallery/offset-press-roller-tower-motor-attachment.jpg',
