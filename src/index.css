@@ -144,6 +144,12 @@ p {
   gap: 10px;
 }
 
+.btn svg {
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .btn:disabled {
   opacity: 0.65;
   cursor: not-allowed;
@@ -820,6 +826,12 @@ p {
   color: var(--primary-navy);
   transition: var(--transition-fast);
   margin-top: auto;
+}
+
+.product-card-link svg {
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .product-card:hover .product-card-link {
@@ -2341,17 +2353,30 @@ textarea.form-control {
 .page-breadcrumbs {
   font-size: 0.85rem;
   color: var(--neutral-body);
-  display: flex;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   font-weight: 600;
+  line-height: 1;
+}
+
+.page-breadcrumbs svg {
+  display: inline-block;
+  flex-shrink: 0;
+  color: var(--neutral-body);
+  opacity: 0.75;
 }
 
 .page-breadcrumbs span,
 .page-breadcrumbs a {
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
   transition: var(--transition-fast);
   color: inherit;
   text-decoration: none;
+  line-height: 1;
 }
 
 .page-breadcrumbs span:hover,
