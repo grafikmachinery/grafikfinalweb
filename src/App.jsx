@@ -1478,11 +1478,13 @@ function App({ initialPath = null }) {
                   <div className="product-detail-layout">
                     {/* Media Gallery column */}
                     <div className="product-detail-gallery">
-                      <img 
-                        src={product.image} 
-                        alt={product.name} 
-                        className="product-detail-main-img"
-                      />
+                      <div className="photo-wm-wrap">
+                        <img 
+                          src={product.image} 
+                          alt={product.name} 
+                          className="product-detail-main-img"
+                        />
+                      </div>
                       
                       {/* Secondary thumb gallery to show working visual assets */}
                       <div className="product-detail-thumbs">

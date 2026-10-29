@@ -1803,6 +1803,21 @@ p {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* ── Diagonal tiled watermark (gallery thumbnails) ── */
+.masonry-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='170'%3E%3Ctext transform='rotate(-35 170 85)' x='170' y='85' font-family='Arial%2Csans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle' dominant-baseline='middle'%3E%C2%A9 Grafik Machinery International%3C/text%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 340px 170px;
+  opacity: 0.18;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 3;
+}
+
 .masonry-item:hover {
   box-shadow: 0 12px 32px rgba(11, 37, 69, 0.16);
 }
@@ -1903,6 +1918,33 @@ p {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+/* Watermark wrapper for product detail main image */
+.photo-wm-wrap {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+/* ── Diagonal tiled watermark (product detail image) ── */
+.photo-wm-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='170'%3E%3Ctext transform='rotate(-35 170 85)' x='170' y='85' font-family='Arial%2Csans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle' dominant-baseline='middle'%3E%C2%A9 Grafik Machinery International%3C/text%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 340px 170px;
+  opacity: 0.18;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 3;
+}
+
+.photo-wm-wrap .product-detail-main-img {
+  border-radius: 0; /* parent handles radius */
 }
 
 .product-detail-main-img {
@@ -2834,6 +2876,23 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   cursor: default;
+  position: relative;
+}
+
+/* ── Diagonal tiled watermark (fullscreen lightbox) ── */
+.lightbox-stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='380' height='190'%3E%3Ctext transform='rotate(-35 190 95)' x='190' y='95' font-family='Arial%2Csans-serif' font-size='14' font-weight='700' fill='white' text-anchor='middle' dominant-baseline='middle'%3E%C2%A9 Grafik Machinery International%3C/text%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 380px 190px;
+  opacity: 0.19;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 5;
+  border-radius: 6px;
 }
 
 .lightbox-active-img {
