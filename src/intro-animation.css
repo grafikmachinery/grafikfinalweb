@@ -1,0 +1,118 @@
+/* ============================================================
+   intro-animation.css — First-visit brand intro loading animation
+   ============================================================ */
+
+/* ── Full-screen covering overlay ────────────────────────── */
+.site-intro-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--neutral-light, #F8FAFC);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transform: translateY(0);
+  transition: transform 0.65s cubic-bezier(0.65, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Immediately sweeps upward as soon as the logo fill completes */
+.site-intro-overlay.site-intro-lifting {
+  transform: translateY(-100%);
+}
+
+/* ── Center Container ────────────────────────────────────── */
+.site-intro-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ── Logo Stack ──────────────────────────────────────────── */
+.site-intro-logo-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  width: auto;
+}
+
+.site-intro-logo {
+  height: 180px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Bottom: faint silhouette at 15% opacity */
+.site-intro-logo-silhouette {
+  opacity: 0.15;
+}
+
+/* Top: full color, revealed from bottom to top via clip-path over 1.1s */
+.site-intro-logo-reveal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: inset(100% 0 0 0);
+  -webkit-clip-path: inset(100% 0 0 0);
+  animation: site-intro-sweep 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: clip-path;
+}
+
+@keyframes site-intro-sweep {
+  0% {
+    clip-path: inset(100% 0 0 0);
+    -webkit-clip-path: inset(100% 0 0 0);
+  }
+  100% {
+    clip-path: inset(0% 0 0 0);
+    -webkit-clip-path: inset(0% 0 0 0);
+  }
+}
+
+/* ── Thin blue line under the logo ───────────────────────── */
+.site-intro-line {
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-steel, #134074);
+  margin-top: 14px;
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: site-intro-line-grow 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform;
+}
+
+@keyframes site-intro-line-grow {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* ── Mobile responsiveness (120px tall on mobile) ────────── */
+@media (max-width: 640px) {
+  .site-intro-logo-wrap,
+  .site-intro-logo {
+    height: 120px;
+  }
+
+  .site-intro-line {
+    margin-top: 10px;
+  }
+}

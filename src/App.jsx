@@ -38,6 +38,7 @@ import {
 } from 'lucide-react';
 import { GALLERY_PHOTOS } from './galleryData.js';
 export { GALLERY_PHOTOS };
+import IntroAnimation from './IntroAnimation.jsx';
 
 // Custom Social SVG Icon Components (Lucide brand icons fallback)
 const FacebookIcon = ({ size = 20, ...props }) => (
@@ -870,6 +871,9 @@ function App({ initialPath = null }) {
 
   return (
     <div className="app-layout">
+      {/* First-visit Brand Intro Loading Animation */}
+      <IntroAnimation />
+
       {/* Sticky Header & Navbar */}
       <header className={`navbar-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-container">
