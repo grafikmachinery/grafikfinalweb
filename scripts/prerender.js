@@ -72,7 +72,7 @@ const PRODUCT_META = {
 // Page-level SEO data for non-product routes
 const PAGE_META = {
   '/': {
-    title: 'Grafik Machinery International | Premium Industrial Printing & Packaging Solutions',
+    title: 'Grafik Machinery International | UV Curing Systems, LED UV Systems, Carton Folder Gluers',
     desc:  'Grafik Machinery International \u2014 manufacturer and exporter of UV curing systems, LED UV dryers, carton folder gluers, roller coaters, and customized printing machinery since 1989.',
     image: DEFAULT_IMAGE,
     type:  'website',

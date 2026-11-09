@@ -467,7 +467,7 @@ export function getRouteFromPath(initialPath) {
     return {
       page: 'home',
       productId: '',
-      title: 'Grafik Machinery International | Premium Industrial Printing & Packaging Solutions'
+      title: 'Grafik Machinery International | UV Curing Systems, LED UV Systems, Carton Folder Gluers'
     };
   }
   if (pathname === '/about') {
